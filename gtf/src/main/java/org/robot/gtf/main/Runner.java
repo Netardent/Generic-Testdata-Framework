@@ -15,7 +15,7 @@ import org.robot.gtf.configuration.MetadataReader;
 
 public class Runner {
 
-	private static final String ARGUMENT_METADATA_DIRECTORY = "MetadataDirectory";
+	private static final String ARGUMENT_METADATA_DIRECTORY = "ConfigurationDirectory";
 	private static final String ARGUMENT_CSV_DIRECTORY = "CsvDirectory";
 	private static final String ARGUMENT_TESTSUITE_DIRECTORY = "TestsuiteDirectory";
 	
