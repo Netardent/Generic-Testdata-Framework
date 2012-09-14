@@ -11,6 +11,7 @@ public class Metadata {
 	
 	private String footerTemplateFilePath;
 	
+	private String testcaseTemplateFilePath;
 	
 	public void addValue(int pos, String value) {
 		values.put(pos, value);
@@ -34,5 +35,13 @@ public class Metadata {
 
 	public void setFooterTemplateFilePath(String footerTemplateFilePath) {
 		this.footerTemplateFilePath = footerTemplateFilePath;
+	}
+
+	public String getTestcaseTemplateFilePath() {
+		return testcaseTemplateFilePath;
+	}
+
+	public void setTestcaseTemplateFilePath(String testcaseTemplateFilePath) {
+		this.testcaseTemplateFilePath = testcaseTemplateFilePath;
 	}
 }
