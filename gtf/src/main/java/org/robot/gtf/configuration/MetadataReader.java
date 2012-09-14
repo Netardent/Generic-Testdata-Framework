@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.Enumeration;
 import java.util.Properties;
 import org.apache.commons.lang.StringUtils;
+import org.robot.gtf.configuration.Metadata;
 
 
 public class MetadataReader {
@@ -23,7 +24,7 @@ public class MetadataReader {
 		this.metadataDirectory = metadataDirectory;
 	}
 	
-	public Metadata readMetadata(String fileName) throws IOException {
+	public Metadata read(String fileName) throws IOException {
 		
 		Metadata metadata = new Metadata();
 		

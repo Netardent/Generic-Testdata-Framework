@@ -1,10 +1,12 @@
 package org.robot.gtf.builder;
 
+import org.robot.gtf.configuration.Metadata;
+
 public class CSVBuilder {
 
 	
 	
-	public String buildTestcases(String csvFilePath) {
+	public String build(String csvFilePath, Metadata metadata) {
 		
 		return null;
 	}
