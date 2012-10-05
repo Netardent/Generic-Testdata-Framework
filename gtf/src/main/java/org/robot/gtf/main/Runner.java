@@ -19,6 +19,8 @@ public class Runner {
 	private static final String ARGUMENT_CSV_DIRECTORY = "CsvDirectory";
 	private static final String ARGUMENT_TESTSUITE_DIRECTORY = "TestsuiteDirectory";
 	
+	private static final String VERSION_INFO = "Robot Generic Testdata Framework - Version 0.1a\n";
+	
 	public static void main(String[] args) throws FileNotFoundException, IOException {
 		
 		// Exit if no argument file is given
@@ -27,6 +29,8 @@ public class Runner {
 			printUsage();
 			System.exit(0);
 		}
+		
+		System.out.println(VERSION_INFO);
 		
 		// Read in and parse argument file
 		Properties props = new Properties();
