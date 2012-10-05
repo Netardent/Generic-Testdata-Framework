@@ -27,7 +27,6 @@ public class CSVBuilder {
 	    	
 	    	for (int i=0; i<nextLine.length; i++) {
 	    		String repl = "%" + metadata.getValue(i+1) + "%";	 
-	    		System.out.println("Value: " + nextLine[i] + "Replace: " + repl + "\n");
 	    		testcase = StringUtils.replace(testcase, repl, nextLine[i]);
 	    	}
 	    	result += testcase;

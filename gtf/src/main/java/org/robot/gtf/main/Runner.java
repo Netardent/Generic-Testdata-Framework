@@ -43,6 +43,7 @@ public class Runner {
 		    for (File file : listFiles) {
 		    	String fileName = file.getName();
 		    	if (fileName.endsWith(".csv")) {
+		    		System.out.println("CSV file: " + fileName + "\n");
 		    		String metadataFile = StringUtils.removeEnd(fileName, ".csv");
 		    		String testsuiteFile = metadataFile + ".html";
 		    		
@@ -55,7 +56,9 @@ public class Runner {
 		    		CSVBuilder csvBuilder = new CSVBuilder();
 		    		String build = csvBuilder.build(file.getPath(), metadata);
 		    		
-		    		FileWriter outFile = new FileWriter(props.getProperty(ARGUMENT_TESTSUITE_DIRECTORY) + File.separator + testsuiteFile);
+		    		String outputFileName = props.getProperty(ARGUMENT_TESTSUITE_DIRECTORY) + File.separator + testsuiteFile;
+		    		System.out.println("Writing: " + outputFileName + "\n");
+		    		FileWriter outFile = new FileWriter(outputFileName);
 		    		PrintWriter out = new PrintWriter(outFile);
 		    		out.println(build);
 		    		out.close();

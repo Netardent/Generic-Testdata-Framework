@@ -41,7 +41,6 @@ public class MetadataReader {
 	    	String value = props.getProperty(key).trim();
 
 	    	if (StringUtils.isNumeric(value)) {
-	    		System.out.println("Key -> " + key + " / value -> " + value);
 	    		metadata.addValue(Integer.parseInt(value), key);
 	    	}
 	    }	    
