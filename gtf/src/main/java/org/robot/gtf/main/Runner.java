@@ -37,28 +37,33 @@ public class Runner {
 
 	    File csvFolder = new File(props.getProperty(ARGUMENT_CSV_DIRECTORY));
 	    File[] listFiles = csvFolder.listFiles();
-	    
-	    for (File file : listFiles) {
-	    	String fileName = file.getName();
-	    	if (fileName.endsWith(".csv")) {
-	    		String metadataFile = StringUtils.removeEnd(fileName, ".csv");
-	    		String testsuiteFile = metadataFile + ".html";
-	    		
-	    		if (metadataFile.contains("_")) {
-	    			metadataFile = StringUtils.substring(metadataFile, 0, metadataFile.indexOf("_"));
-	    		}
-	    		metadataFile += ".properties";
-	    		Metadata metadata = metadataReader.read(metadataFile);
-	    		
-	    		CSVBuilder csvBuilder = new CSVBuilder();
-	    		String build = csvBuilder.build(file.getPath(), metadata);
-	    		
-	    		FileWriter outFile = new FileWriter(props.getProperty(ARGUMENT_TESTSUITE_DIRECTORY) + File.separator + testsuiteFile);
-	    		PrintWriter out = new PrintWriter(outFile);
-	    		out.println(build);
-	    		out.close();
-	    		outFile.close();
-	    	}
+
+	    if (listFiles != null) {
+	    	System.out.println("Processing CSV files from " + props.getProperty(ARGUMENT_CSV_DIRECTORY) + "\n");
+		    for (File file : listFiles) {
+		    	String fileName = file.getName();
+		    	if (fileName.endsWith(".csv")) {
+		    		String metadataFile = StringUtils.removeEnd(fileName, ".csv");
+		    		String testsuiteFile = metadataFile + ".html";
+		    		
+		    		if (metadataFile.contains("_")) {
+		    			metadataFile = StringUtils.substring(metadataFile, 0, metadataFile.indexOf("_"));
+		    		}
+		    		metadataFile += ".properties";
+		    		Metadata metadata = metadataReader.read(metadataFile);
+		    		
+		    		CSVBuilder csvBuilder = new CSVBuilder();
+		    		String build = csvBuilder.build(file.getPath(), metadata);
+		    		
+		    		FileWriter outFile = new FileWriter(props.getProperty(ARGUMENT_TESTSUITE_DIRECTORY) + File.separator + testsuiteFile);
+		    		PrintWriter out = new PrintWriter(outFile);
+		    		out.println(build);
+		    		out.close();
+		    		outFile.close();
+		    	}
+		    }
+	    } else {
+	    	System.out.println("\nNo CSV-files found in " + props.getProperty(ARGUMENT_CSV_DIRECTORY) + "\n");
 	    }
 	}
 	

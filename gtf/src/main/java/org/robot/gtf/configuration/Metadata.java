@@ -13,6 +13,8 @@ public class Metadata {
 	
 	private String testcaseTemplateFilePath;
 	
+	private char delimiter = ';';
+	
 	public void addValue(int pos, String value) {
 		values.put(pos, value);
 	}
@@ -44,4 +46,13 @@ public class Metadata {
 	public void setTestcaseTemplateFilePath(String testcaseTemplateFilePath) {
 		this.testcaseTemplateFilePath = testcaseTemplateFilePath;
 	}
+
+	public char getDelimiter() {
+		return delimiter;
+	}
+
+	public void setDelimiter(char delimiter) {
+		this.delimiter = delimiter;
+	}
+	
 }
