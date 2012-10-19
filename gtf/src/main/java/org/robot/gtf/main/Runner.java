@@ -11,10 +11,9 @@ import org.robot.gtf.processor.XLSFileProcessor;
 
 public class Runner {
 
-	private static final String VERSION_INFO = "Robot Generic Testdata Framework - Version 0.1a\n";
+	private static final String VERSION_INFO = "Robot Generic Testdata Framework - Version 0.5\n";
 	
 	public static void main(String[] args) throws FileNotFoundException, IOException, BuilderException {
-		
 		
 		System.out.println(VERSION_INFO);
 		
