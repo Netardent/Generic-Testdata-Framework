@@ -86,7 +86,7 @@
 			              <mainClass>org/robot/gtf/main/Runner</mainClass>
 			            </manifest>
 			          </archive>
-					  <finalName>gtf-0.1</finalName>
+					  <finalName>robot_gtf</finalName>
 	      			  <appendAssemblyId>false</appendAssemblyId>		          
 		        </configuration>
 				<executions>
