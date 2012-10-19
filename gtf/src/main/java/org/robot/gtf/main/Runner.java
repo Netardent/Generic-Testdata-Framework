@@ -12,16 +12,13 @@ import org.apache.commons.lang.StringUtils;
 import org.robot.gtf.builder.BuilderException;
 import org.robot.gtf.builder.CSVBuilder;
 import org.robot.gtf.builder.IBuilder;
+import org.robot.gtf.configuration.Arguments;
 import org.robot.gtf.configuration.BuilderConfiguration;
 import org.robot.gtf.configuration.Metadata;
 import org.robot.gtf.configuration.MetadataReader;
 
 public class Runner {
 
-	private static final String ARGUMENT_METADATA_DIRECTORY = "ConfigurationDirectory";
-	private static final String ARGUMENT_CSV_DIRECTORY = "CsvDirectory";
-	private static final String ARGUMENT_TESTSUITE_DIRECTORY = "TestsuiteDirectory";
-	
 	private static final String VERSION_INFO = "Robot Generic Testdata Framework - Version 0.1a\n";
 	
 	public static void main(String[] args) throws FileNotFoundException, IOException, BuilderException {
@@ -34,49 +31,55 @@ public class Runner {
 		}
 		
 		System.out.println(VERSION_INFO);
+
+		try {
+			// Read in and parse argument file
+			Arguments arguments = new Arguments();
+			arguments.load(args[0]);
 		
-		// Read in and parse argument file
-		Properties props = new Properties();
-	    props.load(new FileInputStream(args[0]));
-
-	    // Start building Robot Framework testsuite files
-	    MetadataReader metadataReader = new MetadataReader(props.getProperty(ARGUMENT_METADATA_DIRECTORY));
-
-	    File csvFolder = new File(props.getProperty(ARGUMENT_CSV_DIRECTORY));
-	    File[] listFiles = csvFolder.listFiles();
-
-	    if (listFiles != null) {
-	    	System.out.println("Processing CSV files from " + props.getProperty(ARGUMENT_CSV_DIRECTORY) + "\n");
-		    for (File file : listFiles) {
-		    	String fileName = file.getName();
-		    	if (fileName.endsWith(".csv")) {
-		    		System.out.println("CSV file: " + fileName + "\n");
-		    		String metadataFile = StringUtils.removeEnd(fileName, ".csv");
-		    		String testsuiteFile = metadataFile + ".html";
-		    		
-		    		if (metadataFile.contains("_")) {
-		    			metadataFile = StringUtils.substring(metadataFile, 0, metadataFile.indexOf("_"));
-		    		}
-		    		metadataFile += ".properties";
-		    		Metadata metadata = metadataReader.read(metadataFile);
-		    		
-		    		IBuilder csvBuilder = new CSVBuilder();
-		    		BuilderConfiguration builderConfiguration = new BuilderConfiguration();
-		    		builderConfiguration.setFilePath(file.getPath());
-		    		String build = csvBuilder.build(builderConfiguration, metadata);
-		    		
-		    		String outputFileName = props.getProperty(ARGUMENT_TESTSUITE_DIRECTORY) + File.separator + testsuiteFile;
-		    		System.out.println("Writing: " + outputFileName + "\n");
-		    		FileWriter outFile = new FileWriter(outputFileName);
-		    		PrintWriter out = new PrintWriter(outFile);
-		    		out.println(build);
-		    		out.close();
-		    		outFile.close();
-		    	}
+		    // Start building Robot Framework testsuite files
+		    MetadataReader metadataReader = new MetadataReader(arguments.getConfigurationDirectory());
+	
+		    File csvFolder = new File(arguments.getCsvDirectory());
+		    File[] listFiles = csvFolder.listFiles();
+	
+		    if (listFiles != null) {
+		    	System.out.println("Processing CSV files from " + arguments.getCsvDirectory() + "\n");
+			    for (File file : listFiles) {
+			    	String fileName = file.getName();
+			    	if (fileName.endsWith(".csv")) {
+			    		System.out.println("CSV file: " + fileName + "\n");
+			    		String metadataFile = StringUtils.removeEnd(fileName, ".csv");
+			    		String testsuiteFile = metadataFile + ".html";
+			    		
+			    		if (metadataFile.contains("_")) {
+			    			metadataFile = StringUtils.substring(metadataFile, 0, metadataFile.indexOf("_"));
+			    		}
+			    		metadataFile += ".properties";
+			    		Metadata metadata = metadataReader.read(metadataFile);
+			    		
+			    		IBuilder csvBuilder = new CSVBuilder();
+			    		BuilderConfiguration builderConfiguration = new BuilderConfiguration();
+			    		builderConfiguration.setFilePath(file.getPath());
+			    		String build = csvBuilder.build(builderConfiguration, metadata);
+			    		
+			    		String outputFileName = arguments.getTestsuiteDirectory() + File.separator + testsuiteFile;
+			    		System.out.println("Writing: " + outputFileName + "\n");
+			    		FileWriter outFile = new FileWriter(outputFileName);
+			    		PrintWriter out = new PrintWriter(outFile);
+			    		out.println(build);
+			    		out.close();
+			    		outFile.close();
+			    	}
+			    }
+		    } else {
+		    	System.out.println("\nNo CSV-files found in " + arguments.getCsvDirectory() + "\n");
 		    }
-	    } else {
-	    	System.out.println("\nNo CSV-files found in " + props.getProperty(ARGUMENT_CSV_DIRECTORY) + "\n");
-	    }
+		} catch (GTFException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 	}
 	
 	private static void printUsage() {
