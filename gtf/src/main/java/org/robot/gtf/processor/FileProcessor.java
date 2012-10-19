@@ -37,7 +37,7 @@ public abstract class FileProcessor extends Processor {
 		    	
 		    	String fileName = file.getName();
 		    	if (fileName.endsWith(getFileEnding())) {
-		    		System.out.print("Processing file: " + fileName + " ... ");
+		    		System.out.println("Processing file: " + fileName);
 		    		
 		    		String rawName = StringUtils.removeEnd(fileName, getFileEnding());
 		    		String metadataFile = rawName;
@@ -55,7 +55,7 @@ public abstract class FileProcessor extends Processor {
 		    		String result = doTheProcessing(builderConfiguration, metadata);
 		    		
 		    		writeTestsuiteFile(result, testsuiteFile, arguments);
-		    		System.out.println("ok");
+		    		System.out.println("ok\n");
 		    	}
 		    }
 		} else {

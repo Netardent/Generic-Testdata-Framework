@@ -18,7 +18,7 @@ public abstract class Processor {
 	protected void writeTestsuiteFile(String testsuiteContents, String testsuiteFile, Arguments arguments) {
 		try {
 			String outputFileName = arguments.getTestsuiteDirectory() + File.separator + testsuiteFile;
-			System.out.println("Writing: " + outputFileName + "\n");
+			System.out.println("Writing: " + outputFileName);
 			FileWriter outFile = new FileWriter(outputFileName);
 			PrintWriter out = new PrintWriter(outFile);
 			out.println(testsuiteContents);

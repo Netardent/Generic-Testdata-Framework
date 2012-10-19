@@ -46,8 +46,8 @@
 				</plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-war-plugin</artifactId>
-					<version>2.0</version>
+					<artifactId>maven-jar-plugin</artifactId>
+					<version>2.2</version>
 				</plugin>
 				<plugin>
 					<groupId>org.codehaus.mojo</groupId>
@@ -62,12 +62,19 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<configuration>
-					<source>1.5</source>
-					<target>1.5</target>
+					<source>1.6</source>
+					<target>1.6</target>
 					<encoding>UTF-8</encoding>
 				</configuration>
 			</plugin>
 			<plugin>
+			    <groupId>org.apache.maven.plugins</groupId>
+			    <artifactId>maven-jar-plugin</artifactId>
+			    <version>2.2</version>
+			    <!-- nothing here -->
+			</plugin>			
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
 		        <artifactId>maven-assembly-plugin</artifactId>
 		        <version>2.3</version>
 		        <configuration>
@@ -82,20 +89,17 @@
 					  <finalName>gtf-0.1</finalName>
 	      			  <appendAssemblyId>false</appendAssemblyId>		          
 		        </configuration>
-		        <executions>
-		          <execution>
-		            <id>make-assembly</id> <!-- this is used for inheritance merges -->
-		            <phase>package</phase> <!-- bind to the packaging phase -->
-		            <goals>
-		              <goal>single</goal>
-		            </goals>
-		          </execution>
-		        </executions>
-		      </plugin>			
+				<executions>
+				      <execution>
+					        <phase>package</phase>
+					        <goals>
+					        	<goal>single</goal>
+					        </goals>
+				      </execution>
+				</executions>		      
+			 </plugin>			
 		</plugins>
 	</build>
-
-
 	<repositories>
 		<repository>
 			<id>laughingpanda</id>
