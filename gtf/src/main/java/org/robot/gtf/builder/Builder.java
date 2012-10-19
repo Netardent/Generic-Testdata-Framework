@@ -3,8 +3,6 @@ package org.robot.gtf.builder;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.zip.DataFormatException;
-
 import org.apache.commons.lang.StringUtils;
 import org.robot.gtf.configuration.BuilderConfiguration;
 import org.robot.gtf.configuration.Metadata;

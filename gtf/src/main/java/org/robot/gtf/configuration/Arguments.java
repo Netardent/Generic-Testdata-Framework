@@ -113,6 +113,5 @@ public class Arguments {
 		if (!configurationFile.exists()) {
 			throw new GTFException(exceptionPrefix +  "contains an entry for '" + argumentName + "' where the directory could not be found. Configured directory is: " + path);
 		}
-		
 	}
 }
