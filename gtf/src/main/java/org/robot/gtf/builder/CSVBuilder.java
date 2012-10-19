@@ -11,7 +11,7 @@ import org.robot.gtf.configuration.Metadata;
 
 import au.com.bytecode.opencsv.CSVReader;
 
-public class CSVBuilder {
+public class CSVBuilder extends Builder {
 
 	
 	
