@@ -9,7 +9,10 @@ import java.io.PrintWriter;
 import java.util.Properties;
 
 import org.apache.commons.lang.StringUtils;
+import org.robot.gtf.builder.BuilderException;
 import org.robot.gtf.builder.CSVBuilder;
+import org.robot.gtf.builder.IBuilder;
+import org.robot.gtf.configuration.BuilderConfiguration;
 import org.robot.gtf.configuration.Metadata;
 import org.robot.gtf.configuration.MetadataReader;
 
@@ -21,7 +24,7 @@ public class Runner {
 	
 	private static final String VERSION_INFO = "Robot Generic Testdata Framework - Version 0.1a\n";
 	
-	public static void main(String[] args) throws FileNotFoundException, IOException {
+	public static void main(String[] args) throws FileNotFoundException, IOException, BuilderException {
 		
 		// Exit if no argument file is given
 		if (args == null || args.length == 0) {
@@ -57,8 +60,10 @@ public class Runner {
 		    		metadataFile += ".properties";
 		    		Metadata metadata = metadataReader.read(metadataFile);
 		    		
-		    		CSVBuilder csvBuilder = new CSVBuilder();
-		    		String build = csvBuilder.build(file.getPath(), metadata);
+		    		IBuilder csvBuilder = new CSVBuilder();
+		    		BuilderConfiguration builderConfiguration = new BuilderConfiguration();
+		    		builderConfiguration.setFilePath(file.getPath());
+		    		String build = csvBuilder.build(builderConfiguration, metadata);
 		    		
 		    		String outputFileName = props.getProperty(ARGUMENT_TESTSUITE_DIRECTORY) + File.separator + testsuiteFile;
 		    		System.out.println("Writing: " + outputFileName + "\n");
