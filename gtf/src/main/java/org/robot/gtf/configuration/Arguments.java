@@ -17,12 +17,14 @@ import org.robot.gtf.main.GTFException;
 public class Arguments {
 
 	public static final String INPUT_TYPE_CSV = "CSV";
+	public static final String INPUT_TYPE_XLS = "XLS";
 	
-	private static final String SUPPORTED_INPUT_TYPES = INPUT_TYPE_CSV; 
+	private static final String SUPPORTED_INPUT_TYPES = INPUT_TYPE_CSV + ", " + INPUT_TYPE_XLS; 
 	
 	private static final String ARGUMENT_CONFIGURATION_DIRECTORY = "ConfigurationDirectory";
 	private static final String ARGUMENT_TESTSUITE_DIRECTORY = "TestsuiteDirectory";
 	private static final String ARGUMENT_CSV_DIRECTORY = "CsvDirectory";
+	private static final String ARGUMENT_XLS_DIRECTORY = "XlsDirectory";
 	private static final String ARGUMENT_INPUT_TYPE = "InputType";
 	
 	private Properties props = new Properties();
@@ -54,16 +56,24 @@ public class Arguments {
 			// Input Type
 			String inputType = StringUtils.upperCase(props.getProperty(ARGUMENT_INPUT_TYPE));    
 			if (inputType != null) {
-				if (!StringUtils.equals(inputType, INPUT_TYPE_CSV)) {
+				if (!StringUtils.equals(inputType, INPUT_TYPE_CSV) && 
+						!StringUtils.equals(inputType, INPUT_TYPE_XLS)) {
 					throw new GTFException(exceptionPrefix +  "contains an entry for '" + ARGUMENT_INPUT_TYPE + "' that is not supported. Supported values are: " + SUPPORTED_INPUT_TYPES);
 				}
 			}
 			
 			// CSV-Directory
 			if (StringUtils.equals(getInputType(), INPUT_TYPE_CSV)) {
-				String csvDirectory = getCsvDirectory();
+				String csvDirectory = getCSVDirectory();
 				validateDirectoryEntry(csvDirectory, ARGUMENT_CSV_DIRECTORY, exceptionPrefix);			
 			}
+
+			// XLS-Directory
+			if (StringUtils.equals(getInputType(), INPUT_TYPE_XLS)) {
+				String xlsDirectory = getXLSDirectory();
+				validateDirectoryEntry(xlsDirectory, ARGUMENT_XLS_DIRECTORY, exceptionPrefix);			
+			}
+
 			
 		} catch (FileNotFoundException e) {
 			throw new GTFException(exceptionPrefix +  "could not be found.", e.getCause());
@@ -100,10 +110,17 @@ public class Arguments {
 	 * Returns the Csv directory
 	 * @return Csv directory
 	 */
-	public String getCsvDirectory() {
+	public String getCSVDirectory() {
 		return props.getProperty(ARGUMENT_CSV_DIRECTORY);
 	}
-	
+
+	/**
+	 * Returns the Xls directory
+	 * @return Xls directory
+	 */
+	public String getXLSDirectory() {
+		return props.getProperty(ARGUMENT_XLS_DIRECTORY);
+	}
 		
 	private void validateDirectoryEntry(String path, String argumentName, String exceptionPrefix) throws GTFException {
 		if (StringUtils.isEmpty(path)) {

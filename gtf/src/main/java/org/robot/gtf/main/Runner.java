@@ -7,6 +7,7 @@ import org.robot.gtf.builder.BuilderException;
 import org.robot.gtf.configuration.Arguments;
 import org.robot.gtf.configuration.MetadataReader;
 import org.robot.gtf.processor.CSVFileProcessor;
+import org.robot.gtf.processor.XLSFileProcessor;
 
 public class Runner {
 
@@ -33,11 +34,22 @@ public class Runner {
 		    MetadataReader metadataReader = new MetadataReader(arguments.getConfigurationDirectory());
 		    metadataReader.validate();
 	
+		    //
 		    // Processing for the different input file types
+		    //
+		    
+		    // CSV-Files
 		    if (StringUtils.equals(arguments.getInputType(), Arguments.INPUT_TYPE_CSV)) {
 		    	CSVFileProcessor csvFileProcessor = new CSVFileProcessor();
 		    	csvFileProcessor.processFiles(metadataReader, arguments);
 		    }
+		    
+		    // XLS-Files
+		    if (StringUtils.equals(arguments.getInputType(), Arguments.INPUT_TYPE_XLS)) {
+		    	XLSFileProcessor xlsFileProcessor = new XLSFileProcessor();
+		    	xlsFileProcessor.processFiles(metadataReader, arguments);
+		    }
+		    
 		} catch (GTFException e) {
 			System.out.println("Detailed exception information:");
 			e.printStackTrace();

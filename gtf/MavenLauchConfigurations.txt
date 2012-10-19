@@ -1,0 +1,20 @@
+
+There are three Eclipse Launch Configurations checked in to the root directory of
+the GIT-project:
+
+- maven assemble.launch : For building an executable JAR for testing and delivery
+- maven eclipse.launch  : For generating the Eclipse settings
+- maven install.launch  : For building the project
+
+All of these configurations make use of the variable 
+
+${mvn_home}
+
+which must be added in Eclipse. It has to point to the local Maven installation that
+contains the "bin"-folder.
+
+Otherwise all settings should work as only workspace-references are used.
+
+
+
+
