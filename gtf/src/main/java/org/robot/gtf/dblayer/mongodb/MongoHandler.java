@@ -2,8 +2,6 @@ package org.robot.gtf.dblayer.mongodb;
 
 import java.net.ConnectException;
 import java.net.UnknownHostException;
-import javax.naming.AuthenticationException;
-
 import com.mongodb.CommandResult;
 import com.mongodb.DB;
 import com.mongodb.DBCollection;
