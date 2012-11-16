@@ -6,12 +6,8 @@ import java.net.ConnectException;
 import java.net.UnknownHostException;
 import java.util.HashMap;
 import java.util.Map;
-
-import javax.xml.ws.ServiceMode;
-
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runners.Suite.SuiteClasses;
 import org.robot.gtf.dblayer.ProjectRepository;
 import org.robot.gtf.dblayer.to.ProjectTO;
 
@@ -55,6 +51,5 @@ public class MongoProjectRepositoryTest {
 		
 		ProjectRepository rep = new MongoProjectRepository(handler);
 		rep.write(to);
-	}
-	
+	}	
 }

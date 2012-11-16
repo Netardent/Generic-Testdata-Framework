@@ -2,6 +2,11 @@ package org.robot.gtf.dblayer.to;
 
 import java.util.Map;
 
+/**
+ * Represents a Test-Project containing basic project information and global project
+ * environment settings.
+ * @author thomas.jaspers
+ */
 public class ProjectTO {
 
 	private String id;
