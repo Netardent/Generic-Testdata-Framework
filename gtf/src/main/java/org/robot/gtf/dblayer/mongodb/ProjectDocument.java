@@ -1,6 +1,7 @@
 package org.robot.gtf.dblayer.mongodb;
 
-import org.robot.gtf.dblayer.to.ProjectTO;
+import org.robot.gtf.service.to.ProjectTO;
+
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBObject;
 

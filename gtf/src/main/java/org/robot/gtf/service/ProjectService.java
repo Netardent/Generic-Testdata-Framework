@@ -1,12 +1,12 @@
-package org.robot.gtf.dblayer;
+package org.robot.gtf.service;
 
-import org.robot.gtf.dblayer.to.ProjectTO;
+import org.robot.gtf.service.to.ProjectTO;
 
 /**
  * Interface for reading and writing project information.
  * @author thomas.jaspers
  */
-public interface ProjectRepository {
+public interface ProjectService {
 
 	/**
 	 * Reads the project information from a data store using the given id.

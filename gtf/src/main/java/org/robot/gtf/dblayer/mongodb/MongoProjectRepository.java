@@ -1,7 +1,8 @@
 package org.robot.gtf.dblayer.mongodb;
 
-import org.robot.gtf.dblayer.ProjectRepository;
-import org.robot.gtf.dblayer.to.ProjectTO;
+import org.robot.gtf.service.ProjectService;
+import org.robot.gtf.service.to.ProjectTO;
+
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBCollection;
 import com.mongodb.DBObject;
@@ -11,7 +12,7 @@ import com.mongodb.WriteConcern;
  * Read/write access to the project data using MongoDB as the data store. 
  * @author thomas.jaspers
  */
-public class MongoProjectRepository implements ProjectRepository {
+public class MongoProjectRepository implements ProjectService {
 
 	private static final String COLLECTION_NAME_PROJECTS = "gtf_projects";
 	
