@@ -1,7 +1,6 @@
 package org.robot.gtf.processor;
 
 import org.robot.gtf.builder.BuilderException;
-import org.robot.gtf.builder.CSVBuilder;
 import org.robot.gtf.builder.IBuilder;
 import org.robot.gtf.builder.XLSBuilder;
 import org.robot.gtf.configuration.Arguments;

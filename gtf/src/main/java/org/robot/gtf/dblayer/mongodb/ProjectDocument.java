@@ -1,5 +1,7 @@
 package org.robot.gtf.dblayer.mongodb;
 
+import java.util.Map;
+
 import org.robot.gtf.service.to.ProjectTO;
 
 import com.mongodb.BasicDBObject;
@@ -20,32 +22,31 @@ public class ProjectDocument {
 	
 	private static final String DOCUMENT_ATTRIBUTE_RUNTIME_DEFINITIONS = "runtime_definitions";
 	
-	private ProjectTO projectTO;
 	
 	/**
-	 * Constructor to initialize using a ProjectTO. 
-	 * @param projectTO ProjectTO
-	 */
-	public ProjectDocument(ProjectTO projectTO) {
-		this.projectTO = projectTO;
-	}
-
-	/**
-	 * Constructor to initialize using a JSON document.
+	 * Building a ProjectTO from a given JSON document.
 	 * @param jsonDoc JSON Document
+	 * @return ProjectTO
 	 */
-	public ProjectDocument(DBObject jsonDoc) {
-		projectTO = new ProjectTO();
+	public ProjectTO buildProjectTO(DBObject jsonDoc) {
+		ProjectTO projectTO = new ProjectTO();
 		projectTO.setId((String) jsonDoc.get(DOCUMENT_ATTRIBUTE_ID));
 		projectTO.setName((String) jsonDoc.get(DOCUMENT_ATTRIBUTE_NAME));
 		projectTO.setDescription((String) jsonDoc.get(DOCUMENT_ATTRIBUTE_DESC));
+		
+		Map<String, Map<String, String>> environmentParameter = 
+				(Map<String, Map<String, String>>) jsonDoc.get(DOCUMENT_ATTRIBUTE_RUNTIME_DEFINITIONS);
+		projectTO.setEnvironmentParameter(environmentParameter);
+				
+		return projectTO;
 	}
     
 	/**
 	 * Returns the JSON representation of the contained ProjectTO
+	 * @param ProjectTO
 	 * @return JSON Document
 	 */
-    public DBObject getJsonDocument() {
+    public DBObject buildJsonDocument(ProjectTO projectTO) {
     	BasicDBObject jsonDoc = new BasicDBObject();
     	
     	// Setting basic attributes
@@ -64,12 +65,4 @@ public class ProjectDocument {
         jsonDoc.put(DOCUMENT_ATTRIBUTE_RUNTIME_DEFINITIONS, environments);
         return jsonDoc;
     }
-
-	public ProjectTO getProjectTO() {
-		return projectTO;
-	}
-
-	public void setProjectTO(ProjectTO projectTO) {
-		this.projectTO = projectTO;
-	}
 }

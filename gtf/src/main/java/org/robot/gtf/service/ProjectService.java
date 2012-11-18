@@ -1,5 +1,7 @@
 package org.robot.gtf.service;
 
+import java.util.List;
+
 import org.robot.gtf.service.to.ProjectTO;
 
 /**
@@ -7,7 +9,13 @@ import org.robot.gtf.service.to.ProjectTO;
  * @author thomas.jaspers
  */
 public interface ProjectService {
-
+	
+	/**
+	 * Reads in a list of all available projects.
+	 * @return List of projects
+	 */
+	List<ProjectTO> read();
+	
 	/**
 	 * Reads the project information from a data store using the given id.
 	 * @param id Project-Id
