@@ -49,6 +49,7 @@ public class MongoProjectRepository implements ProjectService {
 		return list;
 	}
 	
+	
 	@Override
 	public ProjectTO read(String id) {
 		DBCollection collection = handler.getCollection(COLLECTION_NAME_PROJECTS);
