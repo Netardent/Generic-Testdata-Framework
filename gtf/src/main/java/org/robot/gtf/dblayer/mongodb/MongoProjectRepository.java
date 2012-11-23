@@ -22,6 +22,7 @@ public class MongoProjectRepository implements ProjectService {
 	
 	private MongoHandler handler ;
 	
+	private DBCollection collection;
 	
 	/**
 	 * Constructor taking a MongoHandler with a ready-made connection.
@@ -29,14 +30,13 @@ public class MongoProjectRepository implements ProjectService {
 	 */
 	public MongoProjectRepository(MongoHandler handler) {
 		this.handler = handler;
+		collection = handler.getCollection(COLLECTION_NAME_PROJECTS);
 	}
 	
 	@Override
 	public List<ProjectTO> read() {
 
 		List<ProjectTO> list = new ArrayList<ProjectTO>();
-
-		DBCollection collection = handler.getCollection(COLLECTION_NAME_PROJECTS);
 		DBCursor cursor = collection.find();
 
 		ProjectDocument projectDocument = new ProjectDocument();		
@@ -51,8 +51,6 @@ public class MongoProjectRepository implements ProjectService {
 	
 	@Override
 	public ProjectTO read(String id) {
-		DBCollection collection = handler.getCollection(COLLECTION_NAME_PROJECTS);
-		
 		BasicDBObject dbObject = new BasicDBObject();
 		dbObject.put("_id", id);
 		
@@ -63,10 +61,22 @@ public class MongoProjectRepository implements ProjectService {
 
 	@Override
 	public void write(ProjectTO projectTO) {
-		DBCollection collection = handler.getCollection(COLLECTION_NAME_PROJECTS);
-
 		ProjectDocument projectDocument = new ProjectDocument();
 		DBObject dbObject = projectDocument.buildJsonDocument(projectTO);
 		collection.insert(dbObject, WriteConcern.SAFE);
+	}
+
+	@Override
+	public void update(ProjectTO projectTO) {
+
+		
+	}
+	
+	@Override
+	public void remove(String id) {
+		BasicDBObject dbObject = new BasicDBObject();
+		dbObject.put("_id", id);
+		
+		collection.remove(dbObject);
 	}
 }

@@ -28,4 +28,17 @@ public interface ProjectService {
 	 * @param projectTO A Filled ProjectTO.
 	 */
 	void write(ProjectTO projectTO);
+	
+	/**
+	 * Updates the project identified by this ProjectTO with this ProjectTO.
+	 * @param projectTO ProjectTO
+	 */
+	void update(ProjectTO projectTO);
+	
+	/**
+	 * Remove the project identified by the given id from the database.
+	 * @param id
+	 */
+	void remove(String id);
+	
 }
