@@ -50,7 +50,7 @@ public class MongoProjectRepositoryTest {
 		
 		to.setEnvironmentParameter(environments);
 		
-		ProjectService rep = new MongoProjectRepository(handler);
+		ProjectService rep = new MongoProjectService(handler);
 		rep.write(to);
 	}
 
@@ -76,7 +76,7 @@ public class MongoProjectRepositoryTest {
 		
 		to.setEnvironmentParameter(environments);
 		
-		ProjectService rep = new MongoProjectRepository(handler);
+		ProjectService rep = new MongoProjectService(handler);
 		rep.write(to);
 	}
 
@@ -84,7 +84,7 @@ public class MongoProjectRepositoryTest {
 	@Test
 	public void testProjectReadOneProject() {
 		
-		ProjectService rep = new MongoProjectRepository(handler);
+		ProjectService rep = new MongoProjectService(handler);
 		ProjectTO read = rep.read("rating_engine");		
 		System.out.println("ID  : " + read.getId());
 		System.out.println("Name: " + read.getName());
@@ -102,7 +102,7 @@ public class MongoProjectRepositoryTest {
 	@Test
 	public void testProjectReadAllProjects() {
 
-		ProjectService rep = new MongoProjectRepository(handler);
+		ProjectService rep = new MongoProjectService(handler);
 		List<ProjectTO> read = rep.read();		
 		
 		for (ProjectTO projectTO : read) {

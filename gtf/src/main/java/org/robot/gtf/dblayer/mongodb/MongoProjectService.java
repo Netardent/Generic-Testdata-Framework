@@ -16,11 +16,9 @@ import com.mongodb.WriteConcern;
  * Read/write access to the project data using MongoDB as the data store. 
  * @author thomas.jaspers
  */
-public class MongoProjectRepository implements ProjectService {
+public class MongoProjectService implements ProjectService {
 
 	private static final String COLLECTION_NAME_PROJECTS = "gtf_projects";
-	
-	private MongoHandler handler ;
 	
 	private DBCollection collection;
 	
@@ -28,8 +26,7 @@ public class MongoProjectRepository implements ProjectService {
 	 * Constructor taking a MongoHandler with a ready-made connection.
 	 * @param handler Connection to MongoDB
 	 */
-	public MongoProjectRepository(MongoHandler handler) {
-		this.handler = handler;
+	public MongoProjectService(MongoHandler handler) {
 		collection = handler.getCollection(COLLECTION_NAME_PROJECTS);
 	}
 	
@@ -69,8 +66,13 @@ public class MongoProjectRepository implements ProjectService {
 
 	@Override
 	public void update(ProjectTO projectTO) {
-
+		BasicDBObject dbObjectSearch = new BasicDBObject();
+		dbObjectSearch.put("_id", projectTO.getId());
 		
+		ProjectDocument projectDocument = new ProjectDocument();
+		DBObject dbObject = projectDocument.buildJsonDocument(projectTO);
+		
+		collection.update(dbObjectSearch, dbObject);		
 	}
 	
 	@Override
@@ -79,5 +81,7 @@ public class MongoProjectRepository implements ProjectService {
 		dbObject.put("_id", id);
 		
 		collection.remove(dbObject);
+		
+		// FIXME: Related Testcases must be deleted as well
 	}
 }
