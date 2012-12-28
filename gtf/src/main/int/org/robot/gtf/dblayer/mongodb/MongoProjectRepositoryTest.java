@@ -10,6 +10,8 @@ import java.util.Map;
 import org.junit.Before;
 import org.junit.Test;
 import org.robot.gtf.service.ProjectService;
+import org.robot.gtf.service.impl.mongodb.MongoHandler;
+import org.robot.gtf.service.impl.mongodb.MongoProjectService;
 import org.robot.gtf.service.to.ProjectTO;
 
 public class MongoProjectRepositoryTest {

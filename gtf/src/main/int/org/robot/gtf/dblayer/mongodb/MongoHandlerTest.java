@@ -6,7 +6,7 @@ import java.net.ConnectException;
 import java.net.UnknownHostException;
 
 import org.junit.Test;
-import org.robot.gtf.dblayer.mongodb.MongoHandler;
+import org.robot.gtf.service.impl.mongodb.MongoHandler;
 
 public class MongoHandlerTest {
 

@@ -2,9 +2,6 @@ package org.robot.gtf.service.impl.mongodb;
 
 import java.net.ConnectException;
 import java.net.UnknownHostException;
-
-import javax.enterprise.context.ApplicationScoped;
-
 import com.mongodb.CommandResult;
 import com.mongodb.DB;
 import com.mongodb.DBCollection;
