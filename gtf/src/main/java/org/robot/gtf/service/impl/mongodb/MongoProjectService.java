@@ -1,4 +1,4 @@
-package org.robot.gtf.dblayer.mongodb;
+package org.robot.gtf.service.impl.mongodb;
 
 import java.util.ArrayList;
 import java.util.List;
