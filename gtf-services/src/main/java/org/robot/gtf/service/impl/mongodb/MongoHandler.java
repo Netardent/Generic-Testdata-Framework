@@ -2,6 +2,9 @@ package org.robot.gtf.service.impl.mongodb;
 
 import java.net.ConnectException;
 import java.net.UnknownHostException;
+
+import javax.enterprise.inject.Default;
+
 import com.mongodb.CommandResult;
 import com.mongodb.DB;
 import com.mongodb.DBCollection;
@@ -12,6 +15,7 @@ import com.mongodb.Mongo;
  * (with or without authorization) and returning collections.
  * @author thomas.jaspers
  */
+@Default
 public class MongoHandler {
 
 	private DB mongoDb;

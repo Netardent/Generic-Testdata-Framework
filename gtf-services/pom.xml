@@ -12,7 +12,6 @@
 			<artifactId>junit</artifactId>
 			<version>4.7</version>
 			<type>jar</type>
-			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>net.sf.opencsv</groupId>
@@ -39,7 +38,13 @@
 			<artifactId>cdi-api</artifactId>
 			<version>1.0</version>
 		</dependency>		
-	</dependencies>
+		<dependency>
+			<groupId>org.jglue</groupId>
+			<artifactId>cdi-unit</artifactId>
+			<version>1.0.0</version>
+			<scope>test</scope>
+		</dependency>		
+ 	</dependencies>
 
 	<build>
 		<pluginManagement>
@@ -77,7 +82,26 @@
 			    <artifactId>maven-jar-plugin</artifactId>
 			    <version>2.2</version>
 			    <!-- nothing here -->
-			</plugin>			
+			</plugin>
+			<plugin>
+		        <groupId>org.codehaus.mojo</groupId>
+		        <artifactId>build-helper-maven-plugin</artifactId>
+		        <version>1.1</version>
+		        <executions>
+		          <execution>
+		            <id>add-source</id>
+		            <phase>generate-sources</phase>
+		            <goals>
+		              <goal>add-source</goal>
+		            </goals>
+		            <configuration>
+		              <sources>
+		                <source>src/main/int</source>
+		              </sources>
+		            </configuration>
+		          </execution>
+		        </executions>
+	    	</plugin>
 		</plugins>
 	</build>
 	<repositories>
@@ -85,5 +109,14 @@
 			<id>laughingpanda</id>
 			<url>http://www.laughingpanda.org/maven2</url>
 		</repository>
+		<repository>
+			<id>mvnrepository.com</id>
+			<url>http://mvnrepository.com/artifact</url>
+		</repository>
+		<repository>
+		    <id>jglue-releases</id>
+		    <name>jglue-releases</name>
+		    <url>http://jglue.org/releases</url>
+		</repository>		
 	</repositories>
 </project>
