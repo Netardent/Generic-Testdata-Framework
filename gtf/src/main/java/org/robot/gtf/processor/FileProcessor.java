@@ -41,14 +41,16 @@ public abstract class FileProcessor extends Processor {
 		    		
 		    		String rawName = StringUtils.removeEnd(fileName, getFileEnding());
 		    		String metadataFile = rawName;
-		    		String testsuiteFile = metadataFile + ".html";
+		    		String testsuiteFile = metadataFile + ".";
 		    		
 		    		if (metadataFile.contains("_")) {
 		    			metadataFile = StringUtils.substring(metadataFile, 0, metadataFile.indexOf("_"));
 		    		}
 		    		metadataFile += ".properties";
 		    		Metadata metadata = metadataReader.read(metadataFile);
-		    	
+
+		    		testsuiteFile += metadata.getTestsuiteFilePostfix();
+		    		
 		    		BuilderConfiguration builderConfiguration = new BuilderConfiguration();
 		    		builderConfiguration.setFilePath(file.getPath());
 		    		

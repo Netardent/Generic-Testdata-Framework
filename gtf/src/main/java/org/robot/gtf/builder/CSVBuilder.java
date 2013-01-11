@@ -27,6 +27,7 @@ public class CSVBuilder extends Builder implements IBuilder {
 		    	String testcase = testcaseTemplate;
 		    	result += fillTestcaseTemplate(testcase, nextLine, metadata);
 		    }
+		    reader.close();
 		} catch (FileNotFoundException e) {
 			throw new BuilderException(e.getMessage(), e.getCause());
 		} catch (IOException e) {

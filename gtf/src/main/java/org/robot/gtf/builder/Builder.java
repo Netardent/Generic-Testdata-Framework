@@ -38,13 +38,18 @@ public abstract class Builder {
 	 */
 	protected String fillTestcaseTemplate(String testcaseTemplate, String [] values, Metadata metadata) {
 		
-		String testcase = testcaseTemplate;
+		String testcase = "";
 		
-    	for (int i=0; i<values.length; i++) {
-    		String repl = "%" + metadata.getValue(i+1) + "%";	 
-    		testcase = StringUtils.replace(testcase, repl, values[i]);
-    	}
-
+		// Check if the line is a comment line, which is indicated by a ## in the first column
+		if (values.length > 0 && !values[0].trim().startsWith("##")) {
+		
+			testcase = testcaseTemplate;
+			
+	    	for (int i=0; i<values.length; i++) {
+	    		String repl = "%" + metadata.getValue(i+1) + "%";	 
+	    		testcase = StringUtils.replace(testcase, repl, values[i]);
+	    	}
+		}
     	return testcase;
 	}
 	
@@ -66,7 +71,8 @@ public abstract class Builder {
 	        stringBuilder.append( line );
 	        stringBuilder.append( ls );
 	    }
-
+	    reader.close();
+	    
 	    return stringBuilder.toString();
 	}
 	

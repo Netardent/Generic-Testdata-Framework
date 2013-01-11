@@ -20,9 +20,11 @@ public class MetadataReader {
 	private static final String TEMPLATE_HEADER_KEY_NAME = "HeaderTemplateFileName";
 	private static final String TEMPLATE_FOOTER_KEY_NAME = "FooterTemplateFileName";
 	private static final String TEMPLATE_TESTCASE_KEY_NAME = "TestcaseTemplateFileName";
+	private static final String TESTSUITE_FILE_POSTFIX = "TestsuiteFilePostfix";
 	
 	private static final String DEFAULT_HEADER_TEMPLATE_NAME = "header.template";
 	private static final String DEFAULT_FOOTER_TEMPLATE_NAME = "footer.template";
+	private static final String DEFAULT_TESTSUITE_FILE_POSTFIX = "html";
 	
 	private String metadataDirectory = ".metadata";
 	private String templateDirectory = ".template";
@@ -58,7 +60,7 @@ public class MetadataReader {
 	    try {
 			Properties props = new Properties(); 
 			props.load(new FileInputStream(filePath));
-		    
+
 		    // Read the parameters for the testcase templates 
 		    Enumeration<?> e = props.propertyNames(); 
 		    while (e.hasMoreElements()) {
@@ -71,7 +73,14 @@ public class MetadataReader {
 		    }	    
 			
 		    // Read the value paths to header and footer template
+		    // and the postfix for the generated testsuite files
 		    // Use default values if not defined in metadata file
+		    String testsuiteFilePostfix = DEFAULT_TESTSUITE_FILE_POSTFIX;
+		    if (props.containsKey(TESTSUITE_FILE_POSTFIX)) {
+		    	testsuiteFilePostfix = props.getProperty(TESTSUITE_FILE_POSTFIX);
+		    }
+		    metadata.setTestsuiteFilePostfix(testsuiteFilePostfix);
+		    
 		    String headerFileName = DEFAULT_HEADER_TEMPLATE_NAME;
 		    if (props.containsKey(TEMPLATE_HEADER_KEY_NAME)) {
 		    	headerFileName = props.getProperty(TEMPLATE_HEADER_KEY_NAME);
