@@ -22,3 +22,48 @@ The _Tests_ now would fill this scenario with life. Probably an insurance compan
 possible tests checking that various possible combinations are working. By using the _Generic Testdata Framework_
 functional specialists are enabled to implement _Tests_ using some kind of GUI without the need to know anything
 about the underlying technical details.
+
+Actually the supported GUI is using Excel for editing and writing new _Tests_ for an existing _Test Scenario_. In the 
+long run there will also be a web frontend, but as that one is work in progress it is not yet described here.
+
+
+About this Document
+-------------------
+
+
+Download
+--------
+
+
+Components
+----------
+
+
+
+Technical Usage Guide
+=====================
+
+
+
+
+Conceptual Usage Guide
+======================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
