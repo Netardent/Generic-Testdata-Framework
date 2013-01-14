@@ -45,18 +45,20 @@ About this Document
 This document contains the complete documentation of the _Generic Testdata Framework_. It is divided
 into the following main chapters:
 
-- [Generic-Testdata-Framework](#generic-testdata-framework): The chapter you are currently reading. It contains an introduction on the _Generic Testdata Framework_, a [download link](#download) and an overview on the available [components](#components).
+- The chapter you are currently reading contains an introduction on the _Generic Testdata Framework_, the [download section](#download) and an overview on the available [components](#components).
 - The - [Conceptual Usage Guide](#conceptual-usage-guide) describes the ideas and concepts behind this framework.
 - The [Technical Usage Guide](#technical-usage-guide) describes how to implement tests using the _Generic Testdata Framework_ together with the _Robot Framework_.
 
 
 
-
-
-
-
 Download
 --------
+
+The most recent version of the _Generic Testdata Framework_ can be downloaded from here:
+
+[http://code.google.com/p/generic-testdata-framework/downloads/list](http://code.google.com/p/generic-testdata-framework/downloads/list)
+
+The corresponding release notes for every version can be found [from this page](https://github.com/ThomasJaspers/Generic-Testdata-Framework/wiki/Releases).
 
 
 Components
