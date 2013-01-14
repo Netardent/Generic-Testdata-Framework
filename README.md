@@ -1,11 +1,12 @@
-#Table of Contents#  *generated with [DocToc](http://doctoc.herokuapp.com/)*
+#Table of Contents  (*generated with [DocToc](http://doctoc.herokuapp.com/)*)
 
 - [Generic-Testdata-Framework](#generic-testdata-framework)
   - [About this Document](#about-this-document)
 	- [Download](#download)
 	- [Components](#components)
-- [Technical Usage Guide](#technical-usage-guide)
 - [Conceptual Usage Guide](#conceptual-usage-guide)
+- [Technical Usage Guide](#technical-usage-guide)
+
 
 - - -
 
@@ -41,6 +42,18 @@ long run there will also be a web frontend, but as that one is work in progress 
 About this Document
 -------------------
 
+This document contains the complete documentation of the _Generic Testdata Framework_. It is divided
+into the following main chapters:
+
+- [Generic-Testdata-Framework](#generic-testdata-framework): The chapter you are currently reading. It contains an introduction on the _Generic Testdata Framework_, a [download link](#download) and an overview on the available [components](#components).
+- The - [Conceptual Usage Guide](#conceptual-usage-guide) describes the ideas and concepts behind this framework.
+- The [Technical Usage Guide](#technical-usage-guide) describes how to implement tests using the _Generic Testdata Framework_ together with the _Robot Framework_.
+
+
+
+
+
+
 
 Download
 --------
@@ -51,15 +64,15 @@ Components
 
 
 
-Technical Usage Guide
-=====================
-
-
-
 
 Conceptual Usage Guide
 ======================
 
+
+
+
+Technical Usage Guide
+=====================
 
 
 
