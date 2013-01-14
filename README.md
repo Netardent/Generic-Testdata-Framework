@@ -1,12 +1,16 @@
 #Table of Contents  
 
 - [Generic-Testdata-Framework](#generic-testdata-framework)
-  - [About this Document](#about-this-document)
+	- [About this Document](#about-this-document)
 	- [Download](#download)
 	- [Components](#components)
 - [Conceptual Usage Guide](#conceptual-usage-guide)
 - [Technical Usage Guide](#technical-usage-guide)
-
+	- [Metadata, Templates & Configuration](#metadata-templates--configuration)
+		- [Argument File](#argument-file)
+		- [Metadata](#metadata)
+		- [Templates](#templates)
+		- [Mapping CSV-Files to Metadata-Files](#mapping-csv-files-to-metadata-files)
 
 - - -
 
