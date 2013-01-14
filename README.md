@@ -1,4 +1,4 @@
-#Table of Contents  (*generated with [DocToc](http://doctoc.herokuapp.com/)*)
+#Table of Contents  
 
 - [Generic-Testdata-Framework](#generic-testdata-framework)
   - [About this Document](#about-this-document)
@@ -64,6 +64,10 @@ The corresponding release notes for every version can be found [from this page](
 Components
 ----------
 
+The downloaded *robot_gtf* ZIP-file contains the following components:
+
+1. JAR-file (more to write here)
+2. The example (more to write here)
 
 
 
