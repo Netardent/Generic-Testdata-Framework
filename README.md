@@ -1,4 +1,4 @@
-#Table of Contents  
+*Table of Contents*  
 
 - [Generic-Testdata-Framework](#generic-testdata-framework)
 	- [About this Document](#about-this-document)
