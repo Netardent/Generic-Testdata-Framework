@@ -1,5 +1,3 @@
-* auto-gen TOC:
-{:toc}
 
 Generic-Testdata-Framework
 ==========================
