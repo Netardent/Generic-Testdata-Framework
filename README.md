@@ -78,7 +78,17 @@ The downloaded *robot_gtf* ZIP-file contains the following components:
 Conceptual Usage Guide
 ======================
 
+The following figure depicts pretty well the most basic concept and idea behind this framework. This is to have a 
+clear division between the (technical) implementation of the tests and the (functional) implementation of individual
+testcases.
+
 ![Conceptual Overview](https://raw.github.com/ThomasJaspers/Generic-Testdata-Framework/master/gtf/doc/ConceptualOverview.png)
+
+Therefore so-called test scenarios are implemented using a template- and metadata-driven approach. Certainly it
+makes sense to develop these test scenarios together with the functional experts or at least get the required
+input. Then once the implementation is done different tests can be easily added by filling in the required
+parameters into the different test scenarios. The following screenshot shows the Excel-file for one tests-file
+provided in the example that comes with the _Generic Testdata Framework_.
 
 
 ![Excel Example](https://raw.github.com/ThomasJaspers/Generic-Testdata-Framework/master/gtf/doc/ExcelSample.png)
