@@ -1,11 +1,15 @@
 package org.robot.gtf.builder;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Map;
+
 import org.apache.commons.lang.StringUtils;
 import org.robot.gtf.configuration.BuilderConfiguration;
 import org.robot.gtf.configuration.Metadata;
+import org.robot.gtf.configuration.MetadataReader;
 
 
 /**
@@ -19,12 +23,11 @@ public abstract class Builder {
 	/**
 	 * This is where the specific processing must be implemented in the derived classes.
 	 * @param builderConfiguration Configuration of the Builder
-	 * @param metadata The metadata
-	 * @param testcaseTemplate Content of the testcase template
+	 * @param metadataMap The metadata
 	 * @return String that represents the testcases-part of the "builded" testsuite
 	 * @throws BuilderException in case anything goes wrong
 	 */
-	protected abstract String doTheWork(BuilderConfiguration builderConfiguration, Metadata metadata, String testcaseTemplate) throws BuilderException;
+	protected abstract String doTheWork(BuilderConfiguration builderConfiguration, Map<String, Metadata> metadataMap) throws BuilderException;
 
 
 	/**
@@ -83,21 +86,22 @@ public abstract class Builder {
 	 * @return Complete String that represents a "builded" testsuite
 	 * @throws IOException 
 	 */
-	public final String build(BuilderConfiguration builderConfiguration, Metadata metadata) throws BuilderException {
+	public final String build(BuilderConfiguration builderConfiguration, Map<String, Metadata> metadataMap) throws BuilderException {
 
 		String header;
 		String footer;
-		String testcaseTemplate;
+		
+		MetadataReader reader = new MetadataReader(builderConfiguration.getConfigurationDirectory());
+		
 		try {
-			header = readFileContent(metadata.getHeaderTemplateFilePath());
-			testcaseTemplate = readFileContent(metadata.getTestcaseTemplateFilePath());
-			footer = readFileContent(metadata.getFooterTemplateFilePath());
+			header = readFileContent(reader.getTemplateDirectory() + builderConfiguration.getSubDirectory() + File.separator + "header.template");
+			footer = readFileContent(reader.getTemplateDirectory() + builderConfiguration.getSubDirectory() + File.separator + "footer.template");
 		} catch (IOException e) {
 			throw new BuilderException(e.getMessage(), e.getCause());
 		}
 		
 		String result = header;
-		result += doTheWork(builderConfiguration, metadata, testcaseTemplate);
+		result += doTheWork(builderConfiguration, metadataMap);
 		result += footer;
 
 		return result; 

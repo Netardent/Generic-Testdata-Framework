@@ -20,11 +20,9 @@ public class MetadataReader {
 	private static final String TEMPLATE_HEADER_KEY_NAME = "HeaderTemplateFileName";
 	private static final String TEMPLATE_FOOTER_KEY_NAME = "FooterTemplateFileName";
 	private static final String TEMPLATE_TESTCASE_KEY_NAME = "TestcaseTemplateFileName";
-	private static final String TESTSUITE_FILE_POSTFIX = "TestsuiteFilePostfix";
 	
 	private static final String DEFAULT_HEADER_TEMPLATE_NAME = "header.template";
 	private static final String DEFAULT_FOOTER_TEMPLATE_NAME = "footer.template";
-	private static final String DEFAULT_TESTSUITE_FILE_POSTFIX = "html";
 	
 	private String metadataDirectory = ".metadata";
 	private String templateDirectory = ".template";
@@ -34,6 +32,24 @@ public class MetadataReader {
 		metadataDirectory = directory + File.separator + "metadata" + File.separator;
 		templateDirectory = directory + File.separator + "template" + File.separator;
 	}
+	
+	
+	/**
+	 * Return the relative path to the metadata directory.
+	 * @return Path to metadata directory
+	 */
+	public String getMetadataDirectory() {
+		return metadataDirectory;
+	}
+
+	/**
+	 * Return the relative path to the template directory.
+	 * @return Path to template directory
+	 */
+	public String getTemplateDirectory() {
+		return templateDirectory;
+	}
+
 	
 	/**
 	 * Checks that the basic metadata settings are valid.
@@ -73,14 +89,7 @@ public class MetadataReader {
 		    }	    
 			
 		    // Read the value paths to header and footer template
-		    // and the postfix for the generated testsuite files
 		    // Use default values if not defined in metadata file
-		    String testsuiteFilePostfix = DEFAULT_TESTSUITE_FILE_POSTFIX;
-		    if (props.containsKey(TESTSUITE_FILE_POSTFIX)) {
-		    	testsuiteFilePostfix = props.getProperty(TESTSUITE_FILE_POSTFIX);
-		    }
-		    metadata.setTestsuiteFilePostfix(testsuiteFilePostfix);
-		    
 		    String headerFileName = DEFAULT_HEADER_TEMPLATE_NAME;
 		    if (props.containsKey(TEMPLATE_HEADER_KEY_NAME)) {
 		    	headerFileName = props.getProperty(TEMPLATE_HEADER_KEY_NAME);

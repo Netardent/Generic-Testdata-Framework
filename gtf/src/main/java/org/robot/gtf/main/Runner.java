@@ -6,12 +6,11 @@ import org.apache.commons.lang.StringUtils;
 import org.robot.gtf.builder.BuilderException;
 import org.robot.gtf.configuration.Arguments;
 import org.robot.gtf.configuration.MetadataReader;
-import org.robot.gtf.processor.CSVFileProcessor;
 import org.robot.gtf.processor.XLSFileProcessor;
 
 public class Runner {
 
-	private static final String VERSION_INFO = "Robot Generic Testdata Framework - Version 0.5\n";
+	private static final String VERSION_INFO = "Robot Generic Testdata Framework - Version 0.7\n";
 	
 	public static void main(String[] args) throws FileNotFoundException, IOException, BuilderException {
 		
@@ -36,12 +35,6 @@ public class Runner {
 		    //
 		    // Processing for the different input file types
 		    //
-		    
-		    // CSV-Files
-		    if (StringUtils.equals(arguments.getInputType(), Arguments.INPUT_TYPE_CSV)) {
-		    	CSVFileProcessor csvFileProcessor = new CSVFileProcessor();
-		    	csvFileProcessor.processFiles(metadataReader, arguments);
-		    }
 		    
 		    // XLS-Files
 		    if (StringUtils.equals(arguments.getInputType(), Arguments.INPUT_TYPE_XLS)) {

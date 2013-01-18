@@ -13,8 +13,6 @@ public class Metadata {
 	
 	private String testcaseTemplateFilePath;
 	
-	private String testsuiteFilePostfix;
-	
 	private char delimiter = ';';
 	
 	public void addValue(int pos, String value) {
@@ -47,14 +45,6 @@ public class Metadata {
 
 	public void setTestcaseTemplateFilePath(String testcaseTemplateFilePath) {
 		this.testcaseTemplateFilePath = testcaseTemplateFilePath;
-	}
-
-	public String getTestsuiteFilePostfix() {
-		return testsuiteFilePostfix;
-	}
-
-	public void setTestsuiteFilePostfix(String testsuiteFilePostfix) {
-		this.testsuiteFilePostfix = testsuiteFilePostfix;
 	}
 
 	public char getDelimiter() {

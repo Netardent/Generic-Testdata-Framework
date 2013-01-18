@@ -16,16 +16,20 @@ import org.robot.gtf.main.GTFException;
  */
 public class Arguments {
 
-	public static final String INPUT_TYPE_CSV = "CSV";
 	public static final String INPUT_TYPE_XLS = "XLS";
 	
-	private static final String SUPPORTED_INPUT_TYPES = INPUT_TYPE_CSV + ", " + INPUT_TYPE_XLS; 
+	private static final String SUPPORTED_INPUT_TYPES = INPUT_TYPE_XLS; 
+	
+	private static final String DEFAULT_EXCEL_ENCODING = "Cp1252";
+	private static final String DEFAULT_TESTSUITE_FILE_POSTFIX = "txt";
 	
 	private static final String ARGUMENT_CONFIGURATION_DIRECTORY = "ConfigurationDirectory";
 	private static final String ARGUMENT_TESTSUITE_DIRECTORY = "TestsuiteDirectory";
-	private static final String ARGUMENT_CSV_DIRECTORY = "CsvDirectory";
 	private static final String ARGUMENT_XLS_DIRECTORY = "XlsDirectory";
 	private static final String ARGUMENT_INPUT_TYPE = "InputType";
+	private static final String ARGUMENT_TESTSUITE_FILE_POSTFIX = "TestsuiteFilePostfix";
+	
+	private static final String ARGUMENT_EXCEL_ENCODING = "ExcelEncoding";
 	
 	private Properties props = new Properties();
 
@@ -56,18 +60,11 @@ public class Arguments {
 			// Input Type
 			String inputType = StringUtils.upperCase(props.getProperty(ARGUMENT_INPUT_TYPE));    
 			if (inputType != null) {
-				if (!StringUtils.equals(inputType, INPUT_TYPE_CSV) && 
-						!StringUtils.equals(inputType, INPUT_TYPE_XLS)) {
+				if (!StringUtils.equals(inputType, INPUT_TYPE_XLS)) {
 					throw new GTFException(exceptionPrefix +  "contains an entry for '" + ARGUMENT_INPUT_TYPE + "' that is not supported. Supported values are: " + SUPPORTED_INPUT_TYPES);
 				}
 			}
 			
-			// CSV-Directory
-			if (StringUtils.equals(getInputType(), INPUT_TYPE_CSV)) {
-				String csvDirectory = getCSVDirectory();
-				validateDirectoryEntry(csvDirectory, ARGUMENT_CSV_DIRECTORY, exceptionPrefix);			
-			}
-
 			// XLS-Directory
 			if (StringUtils.equals(getInputType(), INPUT_TYPE_XLS)) {
 				String xlsDirectory = getXLSDirectory();
@@ -81,6 +78,23 @@ public class Arguments {
 			throw new GTFException(exceptionPrefix +  "could not be loaded.", e.getCause());		
 		}
 	}
+	
+	/**
+	 * Return the encoding to be used when reading in Excel-Files.
+	 * @return
+	 */
+	public String getExcelEncoding() {
+		return props.getProperty(ARGUMENT_EXCEL_ENCODING, DEFAULT_EXCEL_ENCODING);		
+	}
+
+	/**
+	 * Return the postfix to be used for the generated testsuite files.
+	 * @return
+	 */
+	public String getTestsuiteFilePostfix() {
+		return props.getProperty(ARGUMENT_TESTSUITE_FILE_POSTFIX, DEFAULT_TESTSUITE_FILE_POSTFIX);		
+	}
+
 	
 	/**
 	 * Returns the configuration directory
@@ -103,17 +117,9 @@ public class Arguments {
 	 * @return Input type
 	 */
 	public String getInputType() {
-		return StringUtils.upperCase(props.getProperty(ARGUMENT_INPUT_TYPE, INPUT_TYPE_CSV));
+		return StringUtils.upperCase(props.getProperty(ARGUMENT_INPUT_TYPE, INPUT_TYPE_XLS));
 	}
 	
-	/**
-	 * Returns the Csv directory
-	 * @return Csv directory
-	 */
-	public String getCSVDirectory() {
-		return props.getProperty(ARGUMENT_CSV_DIRECTORY);
-	}
-
 	/**
 	 * Returns the Xls directory
 	 * @return Xls directory

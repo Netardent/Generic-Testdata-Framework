@@ -1,5 +1,7 @@
 package org.robot.gtf.processor;
 
+import java.util.Map;
+
 import org.robot.gtf.builder.BuilderException;
 import org.robot.gtf.builder.IBuilder;
 import org.robot.gtf.builder.XLSBuilder;
@@ -24,10 +26,10 @@ public class XLSFileProcessor extends FileProcessor {
 	
 	@Override
 	protected String doTheProcessing(BuilderConfiguration builderConfiguration,
-			Metadata metadata) throws BuilderException {
+			Map<String, Metadata> metadataMap) throws BuilderException {
 
 		IBuilder xlsBuilder = new XLSBuilder();
-		return xlsBuilder.build(builderConfiguration, metadata);
+		return xlsBuilder.build(builderConfiguration, metadataMap);
 	}
 
 }
