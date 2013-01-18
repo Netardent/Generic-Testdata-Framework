@@ -111,6 +111,58 @@ the first cell and to use empty lines for formatting purposes.
 Technical Usage Guide
 =====================
 
+Usage
+-----
+
+The _Generic Testdata Framework_ is designed to be started from the commandline. 
+There are two ways to do so that are supported out-of-the-box:
+
+1. Using Java or
+2. Using Ant (currently being implemented, not available yet).
+
+Especially the Ant-Script that is bundled with the download package might be very useful as it does not only 
+support starting the _Generic Testdata Framework_, but also the Robot Framework . 
+No matter which way is used to start the tool, there is only one command line option available, which points 
+to an argument-file that contains all required options. This way one can easily configure different 
+startup-scenarios and share them easily (e.g. by checking the Argument-File into some version control system).
+
+The following chapter is explaining the content of the Argument-File. Afterwards the startup using pure Java is explained 
+and then the integration with Ant.
+
+### Argument File
+
+The argument file contains mandatory and optional parameters that must (can) be passed to the GTF-Tool.
+Thus the only command line argument that is accepted is the path to such an argument-file. It can have any name, but it must have a proper syntax for Java property files (which is not too complicated too achieve ;)). The following list defines the possible property values:
+
+* **ConfigurationDirectory** - This is the directory that contains the metadata defintions as well as the template files. 
+* **CsvDirectory** - This directory contains the CSV-Files that are used as an input to generate the individual Testsuite-Files containing then all the corresponding testcases from such a CSV-File.
+* **XlsDirectory** - This directory contains the XLS-Files that are used as an input to generate the individual Testsuite-Files containing then all the corresponding testcases from such a XSL-File.
+* **TestsuiteDirectory** - The resulting Testsuite-Files are generated into this directory.
+* **InputType** - Define the input type, currently supported CSV and XLS. If no input type is given CSV is assumed.
+
+The following shows an example of an argument file:
+
+`ConfigurationDirectory = c:\gtf-sample\config`  
+`CsvDirectory = c:\gtf-sample\csv`  
+`TestsuiteDirectory = c:\gtf-sample\testsuite`  
+
+It should be noted that for the Configuration Directory this results in the following two directories:
+
+* c:\gtf-sample\config\metadata
+* c:\gtf-sample\config\template
+
+
+### Java
+To start just issue from the corresponding root directory one of the following commands:
+
+java -jar robot_gtf.jar sampleArgumentsCSV.txt
+
+### Ant
+
+Please download and install Ant before continuing here.
+
+
+
 Metadata, Templates & Configuration
 -----------------------------------
 
@@ -119,7 +171,6 @@ To make use of the Generic Testdata Framework a certain amount of configuration 
 We need to pass some basic arguments to the tool. Then some configuration is needed to know how to glue the template files and the content from the CSV-files together.
 
 
-### Argument File
 
 The argument file contains mandatory and optional parameters that must (can) be passed to the GTF-Tool.
 Thus the only command line argument that is accepted is the path to such an argument-file. It can have any name, but it must have a proper syntax for Java property files (which is not too complicated too achieve ;)). The following list defines the possible property values:
