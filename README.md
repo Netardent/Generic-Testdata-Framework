@@ -70,8 +70,8 @@ Components
 
 The downloaded *robot_gtf* ZIP-file contains the following components:
 
-1. JAR-file (more to write here)
-2. The example (more to write here)
+1. JAR-file implementing the _Generic Testdata Framework_ core functionality.
+2. An Excel-based example that can be used as a template for a new project.
 
 
 
@@ -80,6 +80,8 @@ Conceptual Usage Guide
 
 ![Conceptual Overview](https://raw.github.com/ThomasJaspers/Generic-Testdata-Framework/master/gtf/doc/ConceptualOverview.png)
 
+
+![Excel Example](https://raw.github.com/ThomasJaspers/Generic-Testdata-Framework/master/gtf/doc/ExcelSample.png)
 
 Technical Usage Guide
 =====================
