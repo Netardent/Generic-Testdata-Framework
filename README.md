@@ -91,8 +91,22 @@ input. Then once the implementation is done different tests can be easily added 
 parameters into the different test scenarios. The following screenshot shows the Excel-file for one tests-file
 provided in the example that comes with the _Generic Testdata Framework_.
 
-
 ![Excel Example](https://raw.github.com/ThomasJaspers/Generic-Testdata-Framework/master/gtf/doc/ExcelSample.png)
+
+As can be seen from the screenshot in the Excel-Sheet it is possible to focus to a great extend on the tests.
+Basically it is not at all possible to see how the tests are implemented in the end. It is mandatory to
+define in each row the test scenario that should be used. Then the name of the test case and a description
+can be given to have this information available later on in the Robot Framework report file. It would be also
+possible to add Robot Framework tags this way. But none of this information is really mandatory beside the name
+of the test scenario and the parameters to the test.
+
+In order to allow the functional specialists to write new tests on their own it would be very beneficial (well,
+basically mandatory) to define the available test scenarios somewhere together with the meaning of the used
+parameters. On the other hand such a description would be anyway good to have to document the possible tests.
+It can be seen from the screenshot that some color coding can be used in Excel to make the different purposes of
+the different columns more clear. It is also possible to define comment lines by using a "##" in the beginning of
+the first cell and to use empty lines for formatting purposes.
+
 
 Technical Usage Guide
 =====================
