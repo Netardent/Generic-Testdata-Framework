@@ -80,7 +80,8 @@ Conceptual Usage Guide
 
 The following figure depicts pretty well the most basic concept and idea behind this framework. This is to have a 
 clear division between the (technical) implementation of the tests and the (functional) implementation of individual
-testcases.
+testcases. Using the differnt input files (input data) the _Generic Testdata Framework_ then generates complete
+Robot Framework testsuite files.
 
 ![Conceptual Overview](https://raw.github.com/ThomasJaspers/Generic-Testdata-Framework/master/gtf/doc/ConceptualOverview.png)
 
