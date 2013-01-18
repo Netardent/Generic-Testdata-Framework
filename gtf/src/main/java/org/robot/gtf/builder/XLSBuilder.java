@@ -53,7 +53,7 @@ public class XLSBuilder extends Builder implements IBuilder {
 				for (int j=0; j<row.length; j++) {
 					nextLine[j] = row[j].getContents();
 					
-					if (nextLine[0].trim().startsWith("##")) {
+					if (nextLine[0].trim().startsWith("##") || nextLine[0].trim().isEmpty()) {
 						isCommentLine = true;
 						break;
 					} else if (StringUtils.isEmpty(testScenarioName)) {
