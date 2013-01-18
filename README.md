@@ -78,7 +78,7 @@ The downloaded *robot_gtf* ZIP-file contains the following components:
 Conceptual Usage Guide
 ======================
 
-
+![Conceptual Overview](https://raw.github.com/ThomasJaspers/Generic-Testdata-Framework/master/gtf/doc/ConceptualOverview.png)
 
 
 Technical Usage Guide
