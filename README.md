@@ -178,44 +178,36 @@ environments without too big changes required.
 
 Please download and install Ant before continuing here.
 
+ToDo: Document once the Ant-Script is prepared.
 
 
-Metadata, Templates & Configuration
------------------------------------
+Metadata & Templates
+--------------------
 
+As we have seen in the [Conceptual Usage Guide](#conceptual-usage-guide) the main implementation task for
+the test scenarios is done in metadata-definitions and templates.
 
-To make use of the Generic Testdata Framework a certain amount of configuration is required. 
-We need to pass some basic arguments to the tool. Then some configuration is needed to know how to glue the template files and the content from the CSV-files together.
+The very basic concept is that every test is based on a test scenario. Basically there must one set of metadata-
+and template-files for each test scenario. The _Generic Testdata Framework_ is using the name of a test scenario
+to locate the corresponding metadata-file. The metadata-file then in turn contains information on the test-case templates 
+to be used. But there are two more kind of templates (header and footer). Those are not determinded by the metadata,
+but by the directory structure of the test scenarios. This will be explained a little bit later. For the time being:
 
+* A header-template that contains required imports of keyword libraries and potentially some setup- and tear-down keywords.
+* A footer-template which is most of the time empty if the TXT-format of the Robot Framework is used.
+* The testcase-template that defines the test scenario by implementing one (kind of) Robot Test using variables in those places where values from the real tests must be used.
 
-
-The argument file contains mandatory and optional parameters that must (can) be passed to the GTF-Tool.
-Thus the only command line argument that is accepted is the path to such an argument-file. It can have any name, but it must have a proper syntax for Java property files (which is not too complicated too achieve ;)). The following list defines the possible property values:
-
-* **ConfigurationDirectory** - This is the directory that contains the metadata defintions as well as the template files. 
-* **CsvDirectory** - This directory contains the CSV-Files that are used as an input to generate the individual Testsuite-Files containing then all the corresponding testcases from such a CSV-File.
-* **XlsDirectory** - This directory contains the XLS-Files that are used as an input to generate the individual Testsuite-Files containing then all the corresponding testcases from such a XSL-File.
-* **TestsuiteDirectory** - The resulting Testsuite-Files are generated into this directory.
-* **InputType** - Define the input type, currently supported CSV and XLS. If no input type is given CSV is assumed.
-
-The following shows an example of an argument file:
-
-`ConfigurationDirectory = c:\gtf-sample\config`  
-`CsvDirectory = c:\gtf-sample\csv`  
-`TestsuiteDirectory = c:\gtf-sample\testsuite`  
-
-It should be noted that for the Configuration Directory this results in the following two directories:
-
-* c:\gtf-sample\config\metadata
-* c:\gtf-sample\config\template
+Due to the way header- and footer-templates are determined it will be always so that the same 
+header- and footer-templates are used for a whole set of testcase-templates.
 
 
 ### Metadata
 
-There must be one Metadata-File written for each kind of CSV-File that must be processed and converted to a corresponding Testsuite-File. Of course sevaral CSV-Files of the same type can be processed using the same Metadata-File. Metadata-Files are as well defined as Java property files. They have two different kind of entries. The first ones are those referring to the three types of template files to be used by defining the corresponding filesnames without path information. (The path is derived from the _Configuration Directory_ as described above.) Those are:
+As mentioned there must be one metadata-file implemented for each test scenario.  
+Metadata-Files are as well defined as [Java property files](http://en.wikipedia.org/wiki/.properties). 
+They have two different kind of entries. 
+The first kind is the one referring to the testcase-template file:
 
-* **HeaderTemplateFileName** - Name of the Testsuite header template to be used.
-* **FooterTemplateFileName** - Name of the Testsuite footer template to be used.
 * **TestcaseTemplateFileName** - Name of the Testcase template file to be used.
 * **TestsuiteFilePostfix** - Postfix to be used for generated testsuite files.
 
