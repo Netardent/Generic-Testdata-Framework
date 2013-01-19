@@ -135,24 +135,29 @@ and then the integration with Ant.
 ### Argument File
 
 The argument file contains mandatory and optional parameters that must (can) be passed to the GTF-Tool.
-Thus the only command line argument that is accepted is the path to such an argument-file. It can have any name, but it must have a proper syntax for Java property files (which is not too complicated too achieve ;)). The following list defines the possible property values:
+Thus the only command line argument that is accepted is the path to such an argument-file. 
+It can have any name, but it must have a proper syntax for [Java property files](http://en.wikipedia.org/wiki/.properties) 
+(which is not too complicated too achieve ;)). The following list defines the possible arguments:
 
 * **ConfigurationDirectory** - This is the directory that contains the metadata defintions as well as the template files. 
-* **CsvDirectory** - This directory contains the CSV-Files that are used as an input to generate the individual Testsuite-Files containing then all the corresponding testcases from such a CSV-File.
-* **XlsDirectory** - This directory contains the XLS-Files that are used as an input to generate the individual Testsuite-Files containing then all the corresponding testcases from such a XSL-File.
+* **XlsDirectory** - This directory contains the Excel-Files that are used as an input to generate the individual Testsuite-Files containing then all the corresponding testcases from such a XSL-File.
 * **TestsuiteDirectory** - The resulting Testsuite-Files are generated into this directory.
-* **InputType** - Define the input type, currently supported CSV and XLS. If no input type is given CSV is assumed.
+* **InputType** - Define the input type, currently supported XLS. If no input type is given XLS is assumed. This is designed for future use when also database will be supported as an input type.
 
 The following shows an example of an argument file:
 
 `ConfigurationDirectory = c:\gtf-sample\config`  
-`CsvDirectory = c:\gtf-sample\csv`  
+`XlsDirectory = c:\gtf-sample\xsl`  
 `TestsuiteDirectory = c:\gtf-sample\testsuite`  
 
 It should be noted that for the Configuration Directory this results in the following two directories:
 
 * c:\gtf-sample\config\metadata
 * c:\gtf-sample\config\template
+
+The main idea of having all arguments bundled in one file is to be able to use the same argument file inside a 
+team and project. Furthermore this makes it easily possible to have different ready-made files for different
+environments (local, CI-environment, etc.).
 
 
 ### Java
