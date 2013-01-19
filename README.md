@@ -146,9 +146,9 @@ It can have any name, but it must have a proper syntax for [Java property files]
 
 The following shows an example of an argument file:
 
-`ConfigurationDirectory = c:\gtf-sample\config`  
-`XlsDirectory = c:\gtf-sample\xsl`  
-`TestsuiteDirectory = c:\gtf-sample\testsuite`  
+	ConfigurationDirectory = c:\gtf-sample\config  
+	XlsDirectory = c:\gtf-sample\xsl
+	TestsuiteDirectory = c:\gtf-sample\testsuite  
 
 It should be noted that for the Configuration Directory this results in the following two directories:
 
@@ -161,9 +161,18 @@ environments (local, CI-environment, etc.).
 
 
 ### Java
-To start just issue from the corresponding root directory one of the following commands:
+To execute the _Generic Testdata Framework_ just issue the following command from the directory where the
+__robot_gtf.jar__ is located (or add the corresponding path information).
 
-java -jar robot_gtf.jar sampleArgumentsCSV.txt
+	java -jar robot_gtf.jar sampleArguments.txt
+
+The above example for starting the tool also assumes that the arguments-file is located in the same directory.
+This is true for the example that is bundled together with the download. But of course you will adapt this with
+the directory structure of your project. Nevertheless there is one recommendation regarding this which applies
+to the Robot Framework as such as well: Always try to setup projects in a way that only relative path information
+starting from a roo-directory is used. This makes it easier to share the project in the team and between different
+environments without too big changes required.
+
 
 ### Ant
 
