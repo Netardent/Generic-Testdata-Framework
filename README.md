@@ -30,8 +30,8 @@ specialists of a software development team. This means that:
 2. Functional specialists should have an easy (not too technical) way of specifying new _Tests_ based on those existing scenarios.
 
 Let's take a look at an example from an insurance company where customers have the possibility to enter data on their car
-using a web application provided by the insurance company. Of course this should be thoroughly as mistakes here might
-easily result in some unhappy customers.
+using a web application provided by the insurance company. Of course this should be thoroughly tested as mistakes here 
+might easily result in some unhappy customers (and bosses).
 
 One _Test Scenario_ here could be filling all possible fields with corresponding values (type of car, age of driver, etc.).
 This needs to be technically enabled by implementing keywords and an order in which those keywords are executed. In 
