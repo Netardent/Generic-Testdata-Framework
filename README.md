@@ -226,6 +226,10 @@ but by the directory structure of the _Test Scenarios_. This will be explained a
 Due to the way header- and footer-templates are determined it will be always so that the same 
 header- and footer-templates are used for a whole set of testcase-templates.
 
+The following figure depicts how the _Test Scenarios_ from the _Excel_-files are matched to the corresponding
+_Metadata_-files and thus to the implementation of the _Test Scenario_.
+
+![Excel Example](https://raw.github.com/ThomasJaspers/Generic-Testdata-Framework/master/gtf/doc/TestScenarioMatching.png)
 
 ### Metadata
 
