@@ -290,6 +290,22 @@ as well as variables to have proper values for those later on in the report gene
 The Example
 ===========
 
+The _Generic Testdata Framework_ comes along with an easy example that demonstrates the usage of the framework.
+It must be noted that it only shows how to generate Robot Framework testsuites using the _Generic Testdata Framework_
+approach. There are no working Robot Tests provided in the example.
+
+The provided example is using relative path information for all configuration, thus it should work from
+any directory where you unpack the downloaded ZIP-file. The root directory of this - let's call it "gtf_root" -
+should contain at least the following files:
+
+- robot_gtf.jar
+- robot_gtf_ant.xml
+- sampleArguments.txt
+ 
+Then there is a directory structure below the "sample"-directory that is following the configuration in the
+"sampleArguments.txt" _Argument_-file and the conventions used for directory names. The following figure shows
+an outline of the directory structure:
+
 ![Excel Example](https://raw.github.com/ThomasJaspers/Generic-Testdata-Framework/master/gtf/doc/SampleDirectoryStructure.png)
 
 
