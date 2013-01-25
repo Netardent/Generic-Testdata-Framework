@@ -10,10 +10,9 @@
 		- [Argument File](#argument-file)
 		- [Java](#java)
 		- [Ant](#ant)
-	- [Metadata, Templates & Configuration](#metadata-templates--configuration)
+	- [Metadata & Templates](#metadata--templates)
 		- [Metadata](#metadata)
-		- [Templates](#templates)
-		- [Mapping CSV-Files to Metadata-Files](#mapping-csv-files-to-metadata-files)
+		- [Templates](#templates)files)
 
 - - -
 
@@ -115,6 +114,10 @@ the first cell and to use empty lines for formatting purposes.
 Technical Usage Guide
 =====================
 
+This part of the documentation is split into explaining how to startup the framework using Java or Ant
+and passing in initial arguments. This is followed by an explanation of how to write required 
+_Metadata_- and _Template_-files. Those parts can be best checked together with the provided example.
+
 Usage
 -----
 
@@ -189,15 +192,13 @@ must be adepted.)
 For each new project using the _Generic Testdata Framework_ you will probably anyway create a customized copy
 of the provided Ant-script. At least the name (or path to) the _Argument_-file must be changed in this one:
 
-            <!-- Configuration of the Generic Testdata Framework -->
-            <property name="robot.gtf.options" value="sampleArguments.txt"/>
+	<!-- Configuration of the Generic Testdata Framework -->
+	<property name="robot.gtf.options" value="sampleArguments.txt"/>
             
 Basically then it is possible to start the framework by just issuing:
 
-             ant -f robot_gtf_ant.xml
+	ant -f robot_gtf_ant.xml
              
-
-
 
 Metadata & Templates
 --------------------
@@ -221,48 +222,71 @@ header- and footer-templates are used for a whole set of testcase-templates.
 
 ### Metadata
 
-As mentioned there must be one _Metadata_-file implemented for each test scenario.  
+As mentioned there must be one _Metadata_-file provided for each test scenario.  
 _Metadata_-files are as well defined as [Java property files](http://en.wikipedia.org/wiki/.properties). 
 They have two different kind of entries. 
-The first kind is the one referring to the testcase-template file:
 
 * **TestcaseTemplateFileName** - Name of the Testcase template file to be used.
-* **TestsuiteFilePostfix** - Postfix to be used for generated testsuite files.
+* **TestsuiteFilePostfix** - Postfix to be used for generated testsuite files.* 
 
-Now for the Testcase template files there is a need to define where the different elements from one line of a CSV-File are put to the Testcase template file. Therefore that file contains parameter definitions for example `%NAME%` and `%PHONE%`. Now we need to know which column in the CSV-File is the _name_ and which one the _phone_. Assuming we have _name_ in the first column and _phone_ in the second one we would have the following configuration:
+If the entry for the **TestsuiteFilePostfix** is ommitted "txt" is used as the default.
 
-`NAME = 1`  
-`PHONE = 2`
+The second part of the _Metadata_-file does not consist of fixed parameters, but is is a mapping from
+variable names used in the _Template_-files to column positions - for that _Test Scenario_ - in the corresponding
+Excel-file.
 
-Thus we simply need for each parameter definition in the Testcase template a corresponding entry in the mapping file to map this parameter to the corresponding column in the CSV-File. 
+Let's take a look at an example as this is always the easiest way to better understand things:
+
+	Testcase_Name = 2
+	Testcase_Documentation = 3
+	Param_1 = 4
+	Param_2 = 5
+	Param_3 = 6
+	Expected_Result = 7
+
+This means that in the referenced template file there are expressions used like %Testcase_Name%, %Testcase_Documentation%,
+%Param_1% and so on. At the same time we recognice those parameters from the screenshot of the Excel-file defining
+the _Tests_ that have been shown above in the [Conceptual Usage Guide](#conceptual-usage-guide). Here it is 
+important to note that the (commented) headings used there can (and to some extend should) re-use the names
+of the parameters used here, but that has nothing to do with how the _Generic Testdata Framework_ works. The 
+only information used is the column number from which the parameter names and values are being used.
+
+This leads us to the last missing item: The template files.
 
 
 ### Templates
 
-The templates are basically parts of a Robot Framework testsuite. In principle it does not even matter which format is used here, but let's assume we are using HTML-format in the following.
+The templates are basically parts of a Robot Framework testsuite. In principle it does not even matter which format
+is used here, even though it is strongly recommended to use the TXT-format.
 
-For every kind of CSV-File we need the following three template files, which have already been mentioned in the metadata section:
+The _Template_-files are referenced by the corresponing _Metadata_-files and must thus have the corresponding names.
 
-* **Header-Template** - This template contains the header of the Testsuite. Typically it contains required imports of test-libraries and resource files and some more common Robot Framework configurations.
-* **Footer-Template** - This template is only required to ensure the generated Testsuite file is valid. It might even only contain a closing HTML-tag.
-* **Testcase-Template** - This is probably the most complicated template. It contains the definition of one kind of testcase using parameters in case of some real test values. This template is re-used for each line in a corresponding CSV-File to generate the tests inside the testsuite.
+The templates are simply implementing one kind of test - thus a _Test Scenario_ - using whatever Robot Framework
+keywords are required to do so. The used libraries are imported in a template header-file. As mentioned before
+the header- and footer-files are the same for all _Template_-files in one sub-directory below the **XLSDirectory**
+configured in the _Argument_-file.
 
-It is quite likely that the header and footer templates can be re-used for different CSV-Files by simply using the same names in the corresponding Metadata configuration.
+Let's take a look to the _Template_-file that is matching the configuration from the previous chapter:
 
-The testcase template should be unique for each kind of CSV-File. It would make things easiest to define a high-level keyword in Robot for the execution of the specific tests that just gets the required parameters passed in as ... parameters. for example:
+	%Testcase_Name%
+	[Documentation]    %Testcase_Documentation%
+	${RESULT}=    Calculate Base Function     %Param_1%    %Param_2%    %Param_3%
+	Result should be     %Expected_Result%    ${RESULT}  
+	
+It can be easily seen that the strucutre of the file is simply one Robot Framework testcase. Some high-level
+keyword "Calculate Base Functions" is obviously implementing the major parts of the test functionality and 
+it is getting then the corresponding variable parameters which will then be filled from the Excel-file when
+the _Generic Testdata Framework_ is executed. As the whole section will be repeated for each row
+(of that _Test Scenario_) from the Excel-file it makes sense to define the testcase name and description
+as well as variables to have proper values for those later on in the report generated by the Robot Framework.
 
-`Find Phone Number For Name %NAME% %PHONE%`  
-
-Thus we have the _name_ as an input parameter and the _phone_ number we expect as an result both coming from one line in a CSV-File. But there is no intelligence here in the GTF-Tool on what the parameters are used for in the keywords and that's part of the beauty of it :-).
 
 
-### Mapping CSV-Files to Metadata-Files
 
-Ok, there is at least one question left. How does the GTF-Tool know which Metadata-File corresponds to which  CSV-Files. The answer: naming conventions.
 
-Let's assume there is a CSV-File named: `phonefeature.csv` in the CSV-Directory. Then the corresponding metadata file (searched from the corresponding directory) is `phonefeature.properties`.
 
-Of course now we would like to be able to match different CSV-Files of the same type to one Metadata-File. This is possible by using a prefix approach, thus the CSV-Files: `phonefeature_smoke.csv` and `phonefeature_full.csv` would both be mapped to make use of the Metadata-File `phonefeature.properties` by using the "_" as a delimiter for the common part of the name.
 
-This would then result in the generation of two Testsuite-Files: `phonefeature_smoke.html` and `phonefeature_full.html` in the Testsuite directory defined in the Argument-File.
+
+
+
 
