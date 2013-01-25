@@ -13,6 +13,7 @@
 	- [Metadata & Templates](#metadata--templates)
 		- [Metadata](#metadata)
 		- [Templates](#templates)
+- [The Example](#the-example)
 
 - - -
 
@@ -54,7 +55,7 @@ into the following main chapters:
 - The chapter you are currently reading contains an introduction on the _Generic Testdata Framework_, the [download section](#download) and an overview on the different [components](#components) this framework is composed of.
 - The [Conceptual Usage Guide](#conceptual-usage-guide) describes the ideas and concepts behind this framework.
 - The [Technical Usage Guide](#technical-usage-guide) describes how to implement tests using the _Generic Testdata Framework_ together with the _Robot Framework_.
-
+- The [Example-Chapter](#the-example) explains the usage of the _Generic Testdata Framework_ following the provided example.
 
 
 Download
