@@ -146,13 +146,18 @@ It can have any name, but it must have a proper syntax for [Java property files]
 * **ConfigurationDirectory** - This is the directory that contains the metadata defintions as well as the template files. 
 * **XlsDirectory** - This directory contains the Excel-files that are used as an input to generate the individual Testsuite-Files containing then all the corresponding testcases from such a XSL-File.
 * **TestsuiteDirectory** - The resulting Testsuite-Files are generated into this directory.
-* **InputType** - Define the input type, currently supported XLS. If no input type is given XLS is assumed. This is designed for future use when also database will be supported as an input type.
+* **InputType** - Define the input type, currently supported XLS. This is designed for future use when also database will be supported as an input type.
 
 The following shows an example of an argument file:
 
-	ConfigurationDirectory = c:\gtf-sample\config  
-	XlsDirectory = c:\gtf-sample\xsl
-	TestsuiteDirectory = c:\gtf-sample\testsuite  
+	ConfigurationDirectory = ./sample/config
+	XlsDirectory = ./sample/xls
+	TestsuiteDirectory = ./sample/testsuite
+	
+	InputType = XLS
+
+It is recommended to only define relative directories here and no absolute paths. This makes it much easier
+to use the same configuration between different users and environments.
 
 It should be noted that for the Configuration Directory this results in the following two sub-directories:
 
