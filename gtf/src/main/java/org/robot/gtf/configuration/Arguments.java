@@ -21,7 +21,7 @@ public class Arguments {
 	private static final String SUPPORTED_INPUT_TYPES = INPUT_TYPE_XLS; 
 	
 	private static final String DEFAULT_EXCEL_ENCODING = "Cp1252";
-	private static final String DEFAULT_TESTSUITE_FILE_POSTFIX = "txt";
+	private static final String DEFAULT_TESTSUITE_FILE_POSTFIX = "xls";
 	
 	private static final String ARGUMENT_CONFIGURATION_DIRECTORY = "ConfigurationDirectory";
 	private static final String ARGUMENT_TESTSUITE_DIRECTORY = "TestsuiteDirectory";
