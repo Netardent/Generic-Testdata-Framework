@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Robot GTF Startup Project" default="run-tests">
+
+    <!-- Configuration of the Generic Testdata Framework -->
+    <property name="robot.gtf.options" value="sampleArguments.txt"/>
+
+    <!-- Configuration of the Robot Framework -->
+    <property name="robot.java.options" value="-server"/>
+    <property name="robot.config" value="./conf/lokal.py"/>
+    <property name="robot.args" value="./conf/arguments.py"/>
+    <property name="robot.listener" value=""/>
+
+    <target name="run-tests" depends="run-gtf" />
+
+    <target name="run-gtf" description="Running Generic Testdata Framework">
+        <echo>------------------------------------------------------
+Running Generic Testdata Framework ...
+------------------------------------------------------
+        </echo>
+        <java classname="org.robot.gtf.main.Runner" fork="true">
+            <arg value="${robot.gtf.options}"/>
+            <classpath>
+                <pathelement location="robot_gtf.jar"/>
+            </classpath>
+        </java>
+    </target>
+</project>
