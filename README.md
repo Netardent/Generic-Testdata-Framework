@@ -177,7 +177,8 @@ different environments without too big changes required.
 
 ### Ant
 
-Please download and install Ant before continuing here.
+Please [download](http://ant.apache.org/bindownload.cgi) and [install](http://ant.apache.org/manual/index.html) Ant 
+before continuing here.
 
 ToDo: Document once the Ant-Script is prepared.
 
