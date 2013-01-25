@@ -37,15 +37,15 @@ public abstract class FileProcessor extends Processor {
 		Map<File, String> directoryMap = new HashMap<File, String>();
 		
 		// Search for files in sub-directories to process
-		 for (File file : listFiles) {
-			 if (file.isDirectory()) {
-				 File[] subListFiles = file.listFiles();
-				 for (File subFile : subListFiles) {
-					 directoryMap.put(subFile, file.getName());					 
-				 }
-				 listFiles = (File[]) ArrayUtils.addAll(listFiles, subListFiles);
-			 }
-		 }
+		for (File file : listFiles) {
+			if (file.isDirectory()) {
+				File[] subListFiles = file.listFiles();
+				for (File subFile : subListFiles) {
+					directoryMap.put(subFile, file.getName());					 
+				}
+				listFiles = (File[]) ArrayUtils.addAll(listFiles, subListFiles);
+			}
+		}
 		
 		
 		Map<String, Metadata> metadataMap = readMetadataFiles(arguments);

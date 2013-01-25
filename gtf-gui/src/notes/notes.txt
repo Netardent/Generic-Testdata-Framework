@@ -1,0 +1,14 @@
+Setting up the project using Maven:
+
+mvn archetype:generate -DarchetypeGroupId=com.vaadin 
+-DarchetypeArtifactId=vaadin-archetype-clean 
+-DarchetypeVersion=LATEST 
+-DgroupId=robotframework -DartifactId=gtf-gui 
+-Dversion=1.0 -Dpackaging=war  
+-DarchetypeRepository=http://repo1.maven.org/maven2
+
+Last entry was missing from descriptions found so far.
+
+mvn eclipse:eclipse
+mvn clean compile package
+mvn jetty:run
