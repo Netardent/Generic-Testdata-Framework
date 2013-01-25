@@ -32,13 +32,10 @@ public class XLSBuilder extends Builder implements IBuilder {
 		try {
 			
 			 InputStream inp = new FileInputStream(xlsFilePath);
-			 
-			 //XSSFWorkbook wb = (XSSFWorkbook) WorkbookFactory.create(inp);
-			 
 			 Workbook wb = WorkbookFactory.create(inp);
 			 Sheet sheet = wb.getSheetAt(0);
 			
-			// Loop over rows
+			// Loop over rows and cells
 		    for (Row row : sheet) {
 				String testScenarioName = "";
 				boolean isCommentLine = false;
