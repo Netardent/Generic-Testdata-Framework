@@ -12,7 +12,7 @@
 		- [Ant](#ant)
 	- [Metadata & Templates](#metadata--templates)
 		- [Metadata](#metadata)
-		- [Templates](#templates)files)
+		- [Templates](#templates)
 
 - - -
 
