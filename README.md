@@ -315,8 +315,21 @@ is repeating in the directory structure of the _Metadata_- and _Template_-files.
 Furthermore this demonstrates the common use of header and footer _Template_-files from those directories while
 the _Template_files for the _Tests_ might differ depending on the _Test Scenario_.
 
+The resulting Robot Framework testsuite-files are generated to the "testsuite"-directory (as configured in the
+_Arguments_-file). This directory should be empty in the first place and after starting the _Generic Testdata Framework_
+for the example new testsuite-files will show up there. It should be quite straightforward to match how the
+resulting files are generated from the _Template_-files and the content of the Excel-files.
 
+To startup the example using Ant just issue the following command from the "gtf_root" directory of your installation:
 
+	ant -f robot_gtf_ant.xml
+	
+If you are not using Ant the startup using plain Java looks as follows:
 
-
-
+	java -jar robot_gtf.jar sampleArguments.txt
+	
+The example project is hopefully a good basis for starting own projects based on the _Generic Testdata Framework_.
+It is recommended to start with a small example to see how things work out. Of course it is also possible
+to integrate the framework into already existing Robot Tests "relatively" easy as then the template files
+are basically already available. Of course it depends heavily on the current test implementation how easily
+this can really be achieved.
