@@ -180,7 +180,23 @@ different environments without too big changes required.
 Please [download](http://ant.apache.org/bindownload.cgi) and [install](http://ant.apache.org/manual/index.html) Ant 
 before continuing here.
 
-ToDo: Document once the Ant-Script is prepared.
+Ant and the provided build-file allows to easily start the _Generic Testdata Framework_ on different environments
+using the same commands. Furthermore it is possible to extend the script to start the _Robot Framework_ (and
+additional tool like selenium) all from one script. It is assumed that the Ant-script is executed from the
+directory that contains the _Argument_-file and the required directory structure below. (Otherwise the script
+must be adepted.) 
+
+For each new project using the _Generic Testdata Framework_ you will probably anyway create a customized copy
+of the provided Ant-script. At least the name (or path to) the _Argument_-file must be changed in this one:
+
+            <!-- Configuration of the Generic Testdata Framework -->
+            <property name="robot.gtf.options" value="sampleArguments.txt"/>
+            
+Basically then it is possible to start the framework by just issuing:
+
+             ant -f robot_gtf_ant.xml
+             
+
 
 
 Metadata & Templates
