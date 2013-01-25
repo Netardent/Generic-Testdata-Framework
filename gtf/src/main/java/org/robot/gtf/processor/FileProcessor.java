@@ -121,6 +121,7 @@ public abstract class FileProcessor extends Processor {
 				    	keyName = StringUtils.remove(keyName, ".properties");
 				    	
 				    	metadataMap.put(keyName, metadata);
+				    	System.out.println("Reading metadata: " + keyName);
 				    }
 		    	} else {
 		    	
@@ -130,9 +131,8 @@ public abstract class FileProcessor extends Processor {
 			    	keyName = StringUtils.remove(keyName, ".properties");
 			    	
 			    	metadataMap.put(keyName, metadata);
+			    	System.out.println("Reading metadata: " + keyName);
 		    	}
-		    	
-		    	System.out.println("Reading metadata: " + keyName);
 		    }
 		    
 		    System.out.println();
