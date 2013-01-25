@@ -10,10 +10,9 @@
 		- [Argument File](#argument-file)
 		- [Java](#java)
 		- [Ant](#ant)
-	- [Metadata, Templates & Configuration](#metadata-templates--configuration)
+	- [Metadata & Templates](#metadata--templates)
 		- [Metadata](#metadata)
-		- [Templates](#templates)
-		- [Mapping CSV-Files to Metadata-Files](#mapping-csv-files-to-metadata-files)
+		- [Templates](#templates)files)
 
 - - -
 
