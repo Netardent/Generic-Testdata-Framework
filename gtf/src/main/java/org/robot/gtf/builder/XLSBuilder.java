@@ -1,23 +1,20 @@
 package org.robot.gtf.builder;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
+
+import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.Locale;
+import java.io.InputStream;
 import java.util.Map;
-
-import jxl.Cell;
-import jxl.Sheet;
-import jxl.Workbook;
-import jxl.WorkbookSettings;
-import jxl.read.biff.BiffException;
-import jxl.read.biff.CellValue;
-
 import org.apache.commons.lang.StringUtils;
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.robot.gtf.configuration.BuilderConfiguration;
 import org.robot.gtf.configuration.Metadata;
-import au.com.bytecode.opencsv.CSVReader;
+
 
 /**
  * Concrete builder class for processing Excel files in XLS-format.
@@ -33,25 +30,25 @@ public class XLSBuilder extends Builder implements IBuilder {
 		String xlsFilePath = builderConfiguration.getFilePath();
 		
 		try {
-			// Unfortunetly there is still a problem with German Umlauts
-			WorkbookSettings ws = new WorkbookSettings();
-			ws.setEncoding(builderConfiguration.getExcelEncoding());
 			
-			Workbook workbook = Workbook.getWorkbook(new File(xlsFilePath), ws);
-			
-			
-			// Currently only using the first sheet is supported
-			Sheet sheet = workbook.getSheet(0);
+			 InputStream inp = new FileInputStream(xlsFilePath);
+			 
+			 //XSSFWorkbook wb = (XSSFWorkbook) WorkbookFactory.create(inp);
+			 
+			 Workbook wb = WorkbookFactory.create(inp);
+			 Sheet sheet = wb.getSheetAt(0);
 			
 			// Loop over rows
-			for (int i=0; i< sheet.getRows(); i++) {
+		    for (Row row : sheet) {
 				String testScenarioName = "";
 				boolean isCommentLine = false;
+
+				String [] nextLine = new String[row.getLastCellNum()];
+				int j=0;
 				
-				Cell[] row = sheet.getRow(i);
-				String [] nextLine = new String[row.length];
-				for (int j=0; j<row.length; j++) {
-					nextLine[j] = row[j].getContents();
+		    	for (Cell cell : row) {
+		    		
+					nextLine[j] = cell.getStringCellValue();
 					
 					if (nextLine[0].trim().startsWith("##") || nextLine[0].trim().isEmpty()) {
 						isCommentLine = true;
@@ -59,8 +56,9 @@ public class XLSBuilder extends Builder implements IBuilder {
 					} else if (StringUtils.isEmpty(testScenarioName)) {
 						testScenarioName = nextLine[0];
 					}
-				}
-
+					j++;
+		    	}
+		    	
 				if (!isCommentLine) {
 					if (StringUtils.isNotEmpty(builderConfiguration.getSubDirectory())) {
 						testScenarioName = builderConfiguration.getSubDirectory() + "_" + testScenarioName; 
@@ -71,12 +69,11 @@ public class XLSBuilder extends Builder implements IBuilder {
 			    	String testcase = readFileContent(metadata.getTestcaseTemplateFilePath());
 			    	result += fillTestcaseTemplate(testcase, nextLine, metadata);
 				}
-			}
-		
-		} catch (BiffException e) {
+		    }
+		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} catch (IOException e) {
+		} catch (InvalidFormatException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

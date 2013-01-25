@@ -1,9 +1,13 @@
 package org.robot.gtf.processor;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
+import java.nio.charset.Charset;
+
 import org.robot.gtf.configuration.Arguments;
 
 public abstract class Processor {
@@ -19,10 +23,11 @@ public abstract class Processor {
 		try {
 			String outputFileName = arguments.getTestsuiteDirectory() + File.separator + testsuiteFile;
 			System.out.println("Writing: " + outputFileName);
-			FileWriter outFile = new FileWriter(outputFileName);
-			PrintWriter out = new PrintWriter(outFile);
-			out.println(testsuiteContents);
-			out.close();
+			FileOutputStream outFile = new FileOutputStream(outputFileName);
+			OutputStreamWriter outputStreamWriter = new OutputStreamWriter(outFile, "UTF-8");
+			outputStreamWriter.write(testsuiteContents);
+			outputStreamWriter.flush();
+			outputStreamWriter.close();
 			outFile.close();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

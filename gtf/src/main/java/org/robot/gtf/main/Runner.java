@@ -27,7 +27,7 @@ public class Runner {
 			// Read and validate the argument file
 			Arguments arguments = new Arguments();
 			arguments.load(args[0]);
-		
+					
 		    // Initialize the Metadata Reader
 		    MetadataReader metadataReader = new MetadataReader(arguments.getConfigurationDirectory());
 		    metadataReader.validate();
