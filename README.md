@@ -308,7 +308,12 @@ an outline of the directory structure:
 
 ![Excel Example](https://raw.github.com/ThomasJaspers/Generic-Testdata-Framework/master/gtf/doc/SampleDirectoryStructure.png)
 
-
+The example demonstrates the usage of different input directories for different kind of _Test Scenarios_.
+One Excel-file is directly located top-level in the XLS-directory, while two other Excel-files are located in
+the sub-directory called "CalculatorComponent". It can be nicely seen that the directory structure for the input files
+is repeating in the directory structure of the _Metadata_- and _Template_-files. 
+Furthermore this demonstrates the common use of header and footer _Template_-files from those directories while
+the _Template_files for the _Tests_ might differ depending on the _Test Scenario_.
 
 
 
