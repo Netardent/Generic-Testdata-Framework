@@ -8,8 +8,8 @@
 - [Technical Usage Guide](#technical-usage-guide)
 	- [Usage](#usage)
 		- [Argument File](#argument-file)
-		- [Java](#java)
-		- [Ant](#ant)
+		- [Startup using Java](#startup-using-java)
+		- [Startup using Ant](#startup-using-ant)
 	- [Metadata & Templates](#metadata--templates)
 		- [Metadata](#metadata)
 		- [Templates](#templates)
@@ -204,7 +204,7 @@ of the provided Ant-script. At least the name (or path to) the _Argument_-file m
             
 Basically then it is possible to start the framework by just issuing:
 
-	ant -f robot\_gtf\_ant.xml
+	ant -f robot_gtf_ant.xml
              
 
 Metadata & Templates
@@ -213,9 +213,9 @@ Metadata & Templates
 As we have seen in the [Conceptual Usage Guide](#conceptual-usage-guide) the main implementation task for
 the _Test Scenarios_ is done in metadata-definitions and templates.
 
-The very basic concept is that every _Test_ is based on one _Test Scenario_. Basically there must one set of metadata-
+The very basic concept is that every _Test_ is based on one _Test Scenario_. Basically there must be one set of metadata-
 and template-files for each _Test Scenario_. The _Generic Testdata Framework_ is using the name of a _Test Scenario_
-to locate the corresponding _Metadata_-file. The _Metadata_-file then in turn contains information on the test-case templates 
+to locate the corresponding _Metadata_-file. The _Metadata_-file then in turn contains information on the test-case template 
 to be used. But there are two more kind of templates: header and footer. Those are not determinded by the metadata,
 but by the directory structure of the _Test Scenarios_. This will be explained a little bit later. For the time being:
 
