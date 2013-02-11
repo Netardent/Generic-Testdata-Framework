@@ -66,7 +66,11 @@ public class GTFApplication extends Application
     
     private Button addRowButton;
     
+    private Button saveButton;
+    
     private ListSelect scenariosListSelect = new ListSelect("Test Scenarios");
+    
+    private Label projectNameHeading;
     
     @Override
     public void init()
@@ -96,6 +100,7 @@ public class GTFApplication extends Application
         // Main Content
         VerticalLayout mainContent = new VerticalLayout();
         mainContent.setMargin(true, false, false, false);
+        mainContent.setSpacing(true);
 
         // Heading Layout
         VerticalLayout headingContent = new VerticalLayout();
@@ -106,6 +111,10 @@ public class GTFApplication extends Application
         headingContent.addComponent(heading);
 
         mainContent.addComponent(headingContent);
+
+        projectNameHeading = new Label();
+        projectNameHeading.setStyleName("v-label-h3");
+        mainContent.addComponent(projectNameHeading);
         
         // Testcase table and Scenario selection
         HorizontalLayout testcases = new HorizontalLayout();
@@ -122,7 +131,12 @@ public class GTFApplication extends Application
         
         mainContent.addComponent(testcases);
 
-        // Table Button
+        
+        // Button Container
+        HorizontalLayout buttons = new HorizontalLayout();
+        buttons.setSpacing(true);
+        
+        // Table Add Button
         addRowButton = new Button("Add Testcase", new Button.ClickListener() {
             public void buttonClick(ClickEvent event) {
             	if (table2 == null) {
@@ -134,12 +148,22 @@ public class GTFApplication extends Application
         });
         addRowButton.addStyleName(Runo.BUTTON_SMALL);
         addRowButton.addStyleName(Runo.BUTTON_DEFAULT);
+        addRowButton.setIcon(new ThemeResource("../runo/icons/16/document-add.png"));
         addRowButton.setVisible(false);
+        buttons.addComponent(addRowButton);
 
+        // Table Save Button
+        saveButton = new Button("Save", new Button.ClickListener() {
+            public void buttonClick(ClickEvent event) {
+            }
+        });
+        saveButton.addStyleName(Runo.BUTTON_SMALL);
+        saveButton.addStyleName(Runo.BUTTON_DEFAULT);
+        saveButton.setIcon(new ThemeResource("../runo/icons/16/ok.png"));
+        saveButton.setVisible(false);
+        buttons.addComponent(saveButton);
 
-        mainContent.addComponent(addRowButton);
-        
-        
+        mainContent.addComponent(buttons);
         container.addComponent(mainContent);
     }
     
@@ -293,11 +317,6 @@ public class GTFApplication extends Application
     
     public void createTestdataProject(String mainProjectName, String name) {
 
-    	System.out.println("Creating Project");
-    	System.out.println("Main Name: " + mainProjectName);
-    	System.out.println("Name: " + name);
-    	
-    	
     	TestScenarioService testScenarioService = new DummyTestScenarioService();
     	List<TestScenarioDefinitionTO> scenarios = testScenarioService.read(mainProjectName);
 
@@ -315,10 +334,11 @@ public class GTFApplication extends Application
     	// TODO Save some project stuff here later
     	
     	
-    	// Update table and buttons
+    	// Update table and buttons, etc.
+        projectNameHeading.setValue(mainProjectName + " - " + name);
    		refreshTable(mainProjectName, firstTestScenario);
         addRowButton.setVisible(true);
-   		
+        saveButton.setVisible(true);
     }
     
     
