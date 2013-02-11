@@ -1,6 +1,5 @@
 package org.robot.gtf.service.to;
 
-import java.util.List;
 
 public class TestcaseParametersTO {
 
@@ -11,12 +10,39 @@ public class TestcaseParametersTO {
 	private String description;
 	
 	private String guiType;
-	
-	List<TestcaseParametersTO> testcaseParameterDefinitions;
 
-	
-	
-	
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public String getGuiType() {
+		return guiType;
+	}
+
+	public void setGuiType(String guiType) {
+		this.guiType = guiType;
+	}
+
 	
 	
 }

@@ -12,3 +12,5 @@ Last entry was missing from descriptions found so far.
 mvn eclipse:eclipse
 mvn clean compile package
 mvn jetty:run
+
+http://localhost:8080/gtf-gui

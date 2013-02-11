@@ -158,6 +158,18 @@
       <artifactId>vaadin</artifactId>
       <version>${vaadin.version}</version>
     </dependency>
+    <dependency>
+      <groupId>com.vaadin</groupId>
+      <artifactId>vaadin-themes</artifactId>
+      <version>7.0.0.rc1</version>
+    </dependency>
+    <dependency>
+      <groupId>robotframework</groupId>
+      <artifactId>gtf-services</artifactId>
+      <version>0.1</version>
+    </dependency>
+
+    
     <!--
     <dependency>
       <groupId>com.google.gwt</groupId>

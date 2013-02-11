@@ -42,7 +42,6 @@
 			<groupId>org.jglue</groupId>
 			<artifactId>cdi-unit</artifactId>
 			<version>1.0.0</version>
-			<scope>test</scope>
 		</dependency>		
  	</dependencies>
 
