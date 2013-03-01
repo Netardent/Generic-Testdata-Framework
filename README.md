@@ -148,7 +148,7 @@ It can have any name, but it must have a proper syntax for [Java property files]
 * **ConfigurationDirectory** - This is the directory that contains the metadata defintions as well as the template files. 
 * **XlsDirectory** - This directory contains the Excel-files that are used as an input to generate the individual Testsuite-Files containing then all the corresponding testcases from such a XSL-File.
 * **TestsuiteDirectory** - The resulting Testsuite-Files are generated into this directory.
-* * **BackupDirectory** - If this entry is configured backups of Testsuite Files already existing in the **TestsuiteDirectory** will be created into this directory. This is especially helpful if during early development sometimes those files might be edited directly to quickly test some changes. .
+* **BackupDirectory** - If this entry is configured backups of Testsuite Files already existing in the **TestsuiteDirectory** will be created into this directory. This is especially helpful if during early development sometimes those files might be edited directly to quickly test some changes. .
 * **InputType** - Define the input type, currently supported XLS. This is designed for future use when also database will be supported as an input type.
 
 The following shows an example of an argument file:
