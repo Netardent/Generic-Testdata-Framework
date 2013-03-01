@@ -115,23 +115,35 @@ public abstract class FileProcessor extends Processor {
 		    		File[] subListFiles = subFolder.listFiles();
 		    		
 				    for (File subFile : subListFiles) {
-				    	Metadata metadata = reader.read(directoryName + File.separator + subFile.getName());
 				    	
-				    	keyName = directoryName + "_" + subFile.getName();
+				    	if (subFile.getName().endsWith(".properties")) {
+					    	Metadata metadata = reader.read(directoryName + File.separator + subFile.getName());
+					    	
+					    	keyName = directoryName + "_" + subFile.getName();
+					    	keyName = StringUtils.remove(keyName, ".properties");
+					    	
+					    	metadataMap.put(keyName, metadata);
+					    	System.out.println("Reading metadata: " + keyName);
+				    	} else {
+				    		System.out.println("Ignoring file '" + subFile.getName() + "' as it does not have the postfix '.properties'" );
+				    	}
+				    	
+				    }
+		    	} else {
+		    	
+			    	if (file.getName().endsWith(".properties")) {
+		    		
+				    	Metadata metadata = reader.read(file.getName());
+				    	
+				    	keyName = file.getName();
 				    	keyName = StringUtils.remove(keyName, ".properties");
 				    	
 				    	metadataMap.put(keyName, metadata);
 				    	System.out.println("Reading metadata: " + keyName);
-				    }
-		    	} else {
-		    	
-			    	Metadata metadata = reader.read(file.getName());
-			    	
-			    	keyName = file.getName();
-			    	keyName = StringUtils.remove(keyName, ".properties");
-			    	
-			    	metadataMap.put(keyName, metadata);
-			    	System.out.println("Reading metadata: " + keyName);
+			    	} else {
+			    		System.out.println("Ignoring file '" + file.getName() + "' as it does not have the postfix '.properties'" );
+			    	}
+				    	
 		    	}
 		    }
 		    
