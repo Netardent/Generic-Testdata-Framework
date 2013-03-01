@@ -156,6 +156,7 @@ The following shows an example of an argument file:
 	ConfigurationDirectory = ./sample/config
 	XlsDirectory = ./sample/xls
 	TestsuiteDirectory = ./sample/testsuite
+	BackupDirectory = ./sample/backup
 	
 	InputType = XLS
 
