@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+
+<log4j:configuration debug="true">
+
+        <appender name="ROLL" class="org.apache.log4j.rolling.RollingFileAppender">
+                <!-- The active file to log to -->
+                <param name="file" value="c:/portal/portal.log" />
+                <param name="append" value="true" />
+                <param name="encoding" value="UTF-8" />
+
+                <rollingPolicy class="org.apache.log4j.rolling.TimeBasedRollingPolicy">
+                        <param name="FileNamePattern" value="c:/portal.%d.log.gz" />
+                </rollingPolicy>
+
+                <layout class="org.apache.log4j.PatternLayout">
+                        <!-- The log message pattern -->
+                        <param name="ConversionPattern" value="%5p %d{ISO8601} [%t][%x] %c - %m%n" />
+                </layout>
+        </appender>
+        
+        <root>
+                <priority value="info" />
+                <appender-ref ref="ROLL" />
+        </root>
+        
+</log4j:configuration>
