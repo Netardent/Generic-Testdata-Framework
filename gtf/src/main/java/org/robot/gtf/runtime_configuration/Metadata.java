@@ -1,4 +1,4 @@
-package org.robot.gtf.configuration;
+package org.robot.gtf.runtime_configuration;
 
 import java.util.HashMap;
 import java.util.Map;

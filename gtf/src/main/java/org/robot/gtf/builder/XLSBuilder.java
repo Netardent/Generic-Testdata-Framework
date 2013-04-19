@@ -12,8 +12,8 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
-import org.robot.gtf.configuration.BuilderConfiguration;
-import org.robot.gtf.configuration.Metadata;
+import org.robot.gtf.runtime_configuration.BuilderConfiguration;
+import org.robot.gtf.runtime_configuration.Metadata;
 
 
 /**

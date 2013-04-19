@@ -3,8 +3,8 @@ package org.robot.gtf.builder;
 import java.io.IOException;
 import java.util.Map;
 
-import org.robot.gtf.configuration.BuilderConfiguration;
-import org.robot.gtf.configuration.Metadata;
+import org.robot.gtf.runtime_configuration.BuilderConfiguration;
+import org.robot.gtf.runtime_configuration.Metadata;
 
 /**
  * Interface for the Builder classes. 
