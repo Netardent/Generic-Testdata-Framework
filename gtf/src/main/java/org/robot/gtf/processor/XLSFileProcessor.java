@@ -5,9 +5,9 @@ import java.util.Map;
 import org.robot.gtf.builder.BuilderException;
 import org.robot.gtf.builder.IBuilder;
 import org.robot.gtf.builder.XLSBuilder;
-import org.robot.gtf.runtime_configuration.Arguments;
-import org.robot.gtf.runtime_configuration.BuilderConfiguration;
-import org.robot.gtf.runtime_configuration.Metadata;
+import org.robot.gtf.configuration.Arguments;
+import org.robot.gtf.configuration.BuilderConfiguration;
+import org.robot.gtf.configuration.Metadata;
 
 public class XLSFileProcessor extends FileProcessor {
 	

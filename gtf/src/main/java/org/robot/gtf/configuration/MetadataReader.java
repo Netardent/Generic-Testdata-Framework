@@ -1,4 +1,4 @@
-package org.robot.gtf.runtime_configuration;
+package org.robot.gtf.configuration;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -7,8 +7,8 @@ import java.io.IOException;
 import java.util.Enumeration;
 import java.util.Properties;
 import org.apache.commons.lang.StringUtils;
+import org.robot.gtf.configuration.Metadata;
 import org.robot.gtf.main.GTFException;
-import org.robot.gtf.runtime_configuration.Metadata;
 
 
 /**

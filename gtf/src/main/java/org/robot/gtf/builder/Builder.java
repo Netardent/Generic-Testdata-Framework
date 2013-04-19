@@ -9,9 +9,9 @@ import java.io.InputStreamReader;
 import java.util.Map;
 
 import org.apache.commons.lang.StringUtils;
-import org.robot.gtf.runtime_configuration.BuilderConfiguration;
-import org.robot.gtf.runtime_configuration.Metadata;
-import org.robot.gtf.runtime_configuration.MetadataReader;
+import org.robot.gtf.configuration.BuilderConfiguration;
+import org.robot.gtf.configuration.Metadata;
+import org.robot.gtf.configuration.MetadataReader;
 
 
 /**

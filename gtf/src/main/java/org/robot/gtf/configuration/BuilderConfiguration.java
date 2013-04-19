@@ -1,4 +1,4 @@
-package org.robot.gtf.runtime_configuration;
+package org.robot.gtf.configuration;
 
 /**
  * This class contains all the different configuration items the different builder might need.

@@ -7,11 +7,11 @@ import java.util.Map;
 import org.apache.commons.lang.ArrayUtils;
 import org.apache.commons.lang.StringUtils;
 import org.robot.gtf.builder.BuilderException;
+import org.robot.gtf.configuration.Arguments;
+import org.robot.gtf.configuration.BuilderConfiguration;
+import org.robot.gtf.configuration.Metadata;
+import org.robot.gtf.configuration.MetadataReader;
 import org.robot.gtf.main.GTFException;
-import org.robot.gtf.runtime_configuration.Arguments;
-import org.robot.gtf.runtime_configuration.BuilderConfiguration;
-import org.robot.gtf.runtime_configuration.Metadata;
-import org.robot.gtf.runtime_configuration.MetadataReader;
 
 public abstract class FileProcessor extends Processor {
 

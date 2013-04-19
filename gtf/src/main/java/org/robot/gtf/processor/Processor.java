@@ -10,7 +10,7 @@ import java.nio.charset.Charset;
 import java.util.Calendar;
 
 import org.apache.commons.lang.StringUtils;
-import org.robot.gtf.runtime_configuration.Arguments;
+import org.robot.gtf.configuration.Arguments;
 
 public abstract class Processor {
 	

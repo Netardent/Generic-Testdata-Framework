@@ -4,9 +4,9 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import org.apache.commons.lang.StringUtils;
 import org.robot.gtf.builder.BuilderException;
+import org.robot.gtf.configuration.Arguments;
+import org.robot.gtf.configuration.MetadataReader;
 import org.robot.gtf.processor.XLSFileProcessor;
-import org.robot.gtf.runtime_configuration.Arguments;
-import org.robot.gtf.runtime_configuration.MetadataReader;
 
 public class Runner {
 
