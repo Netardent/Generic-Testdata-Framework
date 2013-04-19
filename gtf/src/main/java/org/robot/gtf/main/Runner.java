@@ -7,6 +7,8 @@ import org.robot.gtf.builder.BuilderException;
 import org.robot.gtf.configuration.Arguments;
 import org.robot.gtf.configuration.MetadataReader;
 import org.robot.gtf.processor.XLSFileProcessor;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class Runner {
 
@@ -15,6 +17,10 @@ public class Runner {
 	public static void main(String[] args) throws FileNotFoundException, IOException, BuilderException {
 		
 		System.out.println(VERSION_INFO);
+		
+		// Initialize Spring Container
+		ApplicationContext applicationContext = new ClassPathXmlApplicationContext("/META-INF/application-context.xml");
+		
 		
 		// Exit if no argument file is given
 		if (args == null || args.length == 0) {

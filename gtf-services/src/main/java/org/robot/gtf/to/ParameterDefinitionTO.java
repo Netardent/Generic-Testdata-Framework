@@ -1,7 +1,7 @@
-package org.robot.gtf.service.to;
+package org.robot.gtf.to;
 
 
-public class TestcaseParametersTO {
+public class ParameterDefinitionTO {
 
 	private String id;
 	
@@ -9,8 +9,6 @@ public class TestcaseParametersTO {
 	
 	private String description;
 	
-	private String guiType;
-
 	public String getId() {
 		return id;
 	}
@@ -34,15 +32,4 @@ public class TestcaseParametersTO {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-
-	public String getGuiType() {
-		return guiType;
-	}
-
-	public void setGuiType(String guiType) {
-		this.guiType = guiType;
-	}
-
-	
-	
 }

@@ -1,4 +1,4 @@
-package org.robot.gtf.service.to;
+package org.robot.gtf.to;
 
 public class ParameterTO {
 	
