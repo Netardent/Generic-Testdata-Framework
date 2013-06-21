@@ -1,10 +1,11 @@
 package org.robot.gtf.builder;
 
-
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.List;
 import java.util.Map;
+
 import org.apache.commons.lang.StringUtils;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.ss.usermodel.Cell;
@@ -14,39 +15,40 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.robot.gtf.configuration.BuilderConfiguration;
 import org.robot.gtf.configuration.Metadata;
-
+import org.robot.gtf.to.MappingTO;
 
 /**
  * Concrete builder class for processing Excel files in XLS-format.
+ * 
  * @author thomas.jaspers
  */
 public class XLSBuilder extends Builder implements IBuilder {
 
 	@Override
-	protected String doTheWork(BuilderConfiguration builderConfiguration,
-			Map<String, Metadata> metadataMap) throws BuilderException  {
+	protected String doTheWork(BuilderConfiguration builderConfiguration, Map<String, Metadata> metadataMap,
+			List<MappingTO> mappingInformation) throws BuilderException {
 
 		String result = "";
 		String xlsFilePath = builderConfiguration.getFilePath();
-		
+
 		try {
-			
-			 InputStream inp = new FileInputStream(xlsFilePath);
-			 Workbook wb = WorkbookFactory.create(inp);
-			 Sheet sheet = wb.getSheetAt(0);
-			
+
+			InputStream inp = new FileInputStream(xlsFilePath);
+			Workbook wb = WorkbookFactory.create(inp);
+			Sheet sheet = wb.getSheetAt(0);
+
 			// Loop over rows and cells
-		    for (Row row : sheet) {
+			for (Row row : sheet) {
 				String testScenarioName = "";
 				boolean isCommentLine = false;
 
-				String [] nextLine = new String[row.getLastCellNum()];
-				int j=0;
-				
-		    	for (Cell cell : row) {
-		    		
+				String[] nextLine = new String[row.getLastCellNum()];
+				int j = 0;
+
+				for (Cell cell : row) {
+
 					nextLine[j] = cell.getStringCellValue();
-					
+
 					if (nextLine[0].trim().startsWith("##") || nextLine[0].trim().isEmpty()) {
 						isCommentLine = true;
 						break;
@@ -54,19 +56,20 @@ public class XLSBuilder extends Builder implements IBuilder {
 						testScenarioName = nextLine[0];
 					}
 					j++;
-		    	}
-		    	
+				}
+
 				if (!isCommentLine) {
 					if (StringUtils.isNotEmpty(builderConfiguration.getSubDirectory())) {
-						testScenarioName = builderConfiguration.getSubDirectory() + "_" + testScenarioName; 
+						testScenarioName = builderConfiguration.getSubDirectory() + "_" + testScenarioName;
 					}
-					
+
 					System.out.println("Scenario-Name: " + testScenarioName);
 					Metadata metadata = metadataMap.get(testScenarioName);
-			    	String testcase = readFileContent(metadata.getTestcaseTemplateFilePath());
-			    	result += fillTestcaseTemplate(testcase, nextLine, metadata);
+					String testcaseTemplate = readFileContent(metadata.getTestcaseTemplateFilePath());
+					String testcase = preprocessTemplate(testcaseTemplate, mappingInformation);
+					result += fillTestcaseTemplate(testcase, nextLine, metadata);
 				}
-		    }
+			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -74,8 +77,7 @@ public class XLSBuilder extends Builder implements IBuilder {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		
+
 		return result;
-	}	
+	}
 }
